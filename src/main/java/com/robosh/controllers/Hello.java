@@ -28,4 +28,16 @@ public class Hello {
     public String clientAccount(){
         return "client_account";
     }
+
+
+    @GetMapping("/order-status")
+    public String orderStatus(){
+        return "order_status";
+    }
+
+
+    @GetMapping("/order-taxi")
+    public String orderTaxi(){
+        return "taxi_order";
+    }
 }

@@ -1,0 +1,139 @@
+<html lang="${param.lang}"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:insert="commonParts/header :: copy"></head>
+<body class="home blog">
+<div id="wrapper">
+    <header id="header">
+        <div th:insert="commonParts/header_white :: copy"></div>
+        <div class="header_blue">
+            <nav th:insert="commonParts/navi_block :: copy"></nav>
+        </div>
+    </header>
+
+    <div class="center">
+        <form method="POST" action="${pageContext.request.contextPath}/taxi-Kyiv/enterOrder">
+            <div class="order">
+                <div style="height: 60px"></div>
+                <div class="formsOrder">
+                    <div class="container">
+                        <div style="width: 25%; border-bottom: 4px solid #30a3da">
+                            <h1 class="order-text" th:text="#{taxi.order.place}"></h1>
+                        </div>
+
+                        <hr style="width: 97%; margin-bottom: 15px">
+<!--                        <c:if test="${param.sameAddress == true}">-->
+                            <p class="errorsM" th:text="#{taxi.order.choose.error}"></p>
+<!--                        </c :if>   -->
+
+                            <div class="labelOrder"><h1 class="order-text label-text" th:text="#{taxi.show.address}"></h1></div>
+                        <div class="inputOrder">
+                            <select name="addressDeparture" class="selectAdress">
+                                <c:forEach items="${requestScope.allAddress}" var="address">
+                                    <option><c:out value="${address.street}"/> <c:out value="${address.houseNumber}"/></option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order">
+                <div style="height: 30px"></div>
+
+                <div class="formsOrder">
+                    <div class="container">
+                        <div style="width: 25%; border-bottom: 4px solid #fed402">
+                            <h1 class="order-text"  th:text="#{taxi.order.arrive}"></h1>
+                        </div>
+
+                        <hr style="width: 97%;margin-bottom: 15px">
+                        <div class="labelOrder"><h1 class="order-text label-text" th:text="#{taxi.show.address}"></h1></div>
+                        <div class="inputOrder">
+                            <select name="addressArrive" class="selectAdress">
+                                <c:forEach items="${requestScope.allAddress}" var="address">
+                                    <option><c:out value="${address.street}"/> <c:out value="${address.houseNumber}"/></option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order">
+                <div style="height: 30px"></div>
+                <div class="formsOrder">
+                    <div class="container">
+                        <div style="width: 25%; border-bottom: 4px solid #30a3da">
+                            <h1 class="order-text" th:text="#{taxi.order.reqir}"></h1>
+                        </div>
+                        <hr style="width: 97%; margin-bottom: 15px">
+                        <div class="labelOrder"><h1 class="order-text label-text" th:text="#{taxi.order.auto.type}"></h1></div>
+                        <div class="inputOrder" style="padding: 10px;">
+
+                            <div>
+                                <c:if test="${param.noSuitableCarType == true}">
+                                    <p class="errorsM" th:text="#{taxi.order.no.car}"></p>
+                                </c:if>
+                                <div class="cc-selector">
+                                    <div class="radbox">
+                                        <input id="car" type="radio" name="carType" value="Light" checked="true"/>
+                                        <label class="drinkcard-cc car" for="car"></label>
+                                    </div>
+
+                                    <div class="radbox">
+                                        <input id="wagon" type="radio" name="carType" value="MiniVan"/>
+                                        <label class="drinkcard-cc wagon" for="wagon"></label>
+                                    </div>
+
+                                    <div class="radbox">
+                                        <input id="truck" type="radio" name="carType" value="Wagon"/>
+                                        <label class="drinkcard-cc truck" for="truck"></label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="order">
+                <div style="height: 30px"></div>
+
+                <div class="formsOrder">
+                    <div class="container">
+                        <div style="width: 25%; border-bottom: 4px solid #fed402">
+                            <h1 class="order-text" th:text="#{taxi.order.coupon}"></h1>
+                        </div>
+
+                        <hr style="width: 97%;margin-bottom: 15px">
+                        <div class="labelOrder"><h1 class="order-text label-text" th:text="#{taxi.order.coupon.name}"></h1></div>
+                        <div class="inputOrder">
+                            <input type="text" th:placeholder="#{taxi.order.coupon}" name="coupon" class="inputO">
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="order">
+                <div style="height: 10px"></div>
+
+                <div class="container" style="display: flex;">
+                    <button type="submit" class="buttonSub"  th:text="#{taxi.make.order.client}"></button>
+                </div>
+
+                <div style="height: 100px"></div>
+            </div>
+        </form>
+    </div>
+
+</div>
+<footer th:insert="commonParts/footer :: copy"></footer>
+</body>
+</html>
