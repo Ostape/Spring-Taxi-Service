@@ -1,89 +1,15 @@
-<html lang="${param.lang}" xmlns:fmt="http://xmlns.jcp.org/xml/ns/validation/mapping" xmlns:th="http://www.thymeleaf.org">
-<!--<jsp:include page="../commonPartsOfPages/headTag.jsp"/>-->
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><fmt:message key="label.title"/></title>
+<html lang="${param.lang}" xmlns:fmt="http://xmlns.jcp.org/xml/ns/validation/mapping"
+      xmlns:th="http://www.thymeleaf.org">
 
-    <link rel="icon" href="/img/favicon.ico" type="image/x-icon"/>
-
-    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic&subset=latin,cyrillic'
-          rel='stylesheet' type='text/css'/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
-
-    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
-<!--    -->
-<!--    <script src="${pageContext.request.contextPath}/js/jquery.js?ver=1.11.3"></script>-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
-</head>
+<head th:insert="commonParts/header :: copy"></head>
 <body class="home blog">
 
 <div id="wrapper">
     <header id="header">
-<!--        <jsp:include page="../commonPartsOfPages/header_white.jsp"/>-->
-
-
-        <div class="header_white clearfix">
-            <div class="center">
-                <a href="${pageContext.request.contextPath}/taxi-Kyiv/homePage" id="logo" title="Taxi Kyiv">
-                    <img src="/img/logo.png" width="163" height="57">
-                </a>
-                <div style="float: right; width: 420px">
-                    <div class="signClient">
-                        <p style="float: left;padding-top: 7px; color: #009EDF"><c:out
-                                value="${sessionScope.loginedPerson.name}"/>
-                            <c:out value="${sessionScope.loginedPerson.surname}"/></p>
-
-                        <a href="${pageContext.request.contextPath}/taxi-Kyiv/login">
-                            <div style="margin: auto; float: right; height: 36px;">
-                                <img src="${pageContext.request.contextPath}/img/iconenter.png" style="height: 36px">
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="header_city">
-                        <div class="city_current"><fmt:message key="label.current.city"/></div>
-                    </div>
-
-                    <div class="lang_block">
-                        <ul id="lang">
-                            <li class="lang-item lang-item-2">
-                                <a href="?locale=ua">ua</a>
-                            </li>
-                            <li class="lang-item lang-item-5">
-                                <a href="?locale=en">en</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <div th:insert="commonParts/header_white :: copy"></div>
 
         <div class="header_blue">
-<!--            <jsp:include page="../commonPartsOfPages/navi_block.jsp"/>-->
-            <nav id="navi_block">
-                <div class="center">
-                    <div id="navmobile-btn"><fmt:message key="label.header.menu"/></div>
-                    <ul id="menu-main-menu" class="main_menu ">
-                        <li id="menu-item-45" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-45"><a
-                                href="#"><fmt:message key="label.header.menu.tariff"/></a></li>
-                        <li id="menu-item-44" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-44"><a
-                                href="#"><fmt:message key="label.header.menu.about.us"/></a></li>
-                        <li id="menu-item-47" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-47"><a
-                                href="#"><fmt:message key="label.header.menu.news"/></a></li>
-                        <li id="menu-item-431" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-431"><a
-                                href="${pageContext.request.contextPath}/taxi-Kyiv/makeOrder">
-                            <fmt:message key="label.header.menu.for.make.order"/></a></li>
-                        <li id="menu-item-42" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42"><a
-                                href="#"><fmt:message key="label.header.menu.contacts"/></a></li>
-                    </ul>
-                </div>
-            </nav>
+            <nav th:insert="commonParts/navi_block :: copy"></nav>
 
             <section class="slider_home">
                 <div class="slides_nav_wrap">
@@ -91,11 +17,11 @@
                 </div>
                 <ul id="main_slider">
                     <li>
-                        <img src="${pageContext.request.contextPath}/img/9.png" class="desktop-slide" width="960"
+                        <img src="/img/9.png" class="desktop-slide" width="960"
                              height="368">
 
                         <div class="slide_block">
-                            <img src="${pageContext.request.contextPath}/img/9.png" class="mobile-slide" width="320"
+                            <img src="/img/9.png" class="mobile-slide" width="320"
                                  height="475">
                         </div>
                     </li>
