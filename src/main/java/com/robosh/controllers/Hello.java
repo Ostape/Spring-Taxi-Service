@@ -1,14 +1,26 @@
 package com.robosh.controllers;
 
+import com.robosh.model.entities.Address;
+import com.robosh.repository.AddressRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/m")
 public class Hello {
-    @GetMapping("/maim")
-    public String returnMain(){
+
+//    @Autowired
+//    private AddressRepository addressRepository;
+
+    @GetMapping("/main")
+    public String returnMain(Model model){
+        model.addAttribute("name", "vasia");
         return "main";
+    }
+
+    @GetMapping("/home")
+    public String homePage(){
+        return "home";
     }
 }
