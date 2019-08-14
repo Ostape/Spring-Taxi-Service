@@ -9,7 +9,6 @@
         <div th:insert="commonParts/header_white :: copy"></div>
         <div class="header_blue">
             <nav th:insert="commonParts/navi_block :: copy"></nav>
-
             <section class="slider_home">
                 <div class="slides_nav_wrap">
                     <ul id="slides_nav"></ul>
@@ -40,12 +39,10 @@
 	                    <span class="caption">
                             <span class="cell">
                                 <p th:text="#{home.benefits.work}"></p>
-                                <br>
                                 <p th:text="#{home.benefits.all.day}"></p>
-                                <br>24/7/365
+                                24/7/365
                             </span>
                         </span>
-	                    <span class="icon"></span>
 	                </span>
                 </a>
             </li>
@@ -55,11 +52,9 @@
 	                    <span class="caption">
                             <span class="cell">
                                 <p th:text="#{home.benefits.order}"></p>
-                            <br>
                                 <p th:text="#{home.benefits.order.online}"></p>
                             </span>
                         </span>
-	                    <span class="icon"></span>
 	                </span>
                 </a>
             </li>
@@ -69,13 +64,10 @@
 	                    <span class="caption">
                             <span class="cell">
                                 <p th:text="#{home.benefits.taxi.aeropot}"></p>
-                             <br>
                                 <p th:text="#{home.benefits.taxi.railway.st}"></p>
-                             <br>
                                 <p th:text="#{home.benefits.taxi.auto}"></p>
                             </span>
                         </span>
-	                    <span class="icon"></span>
 	                </span>
                 </a>
             </li>
@@ -83,13 +75,11 @@
                 <a href="#" class="benefits_item">
 	                <span class="benefits_inner">
 	                    <span class="caption">
-                            <span class="cell">
+                            <span class="cell" >
                                 <p th:text="#{home.benefits.low}"></p>
-                            <br>
                                 <p th:text="#{home.benefits.low.tariff}"></p>
                             </span>
                         </span>
-	                    <span class="icon"></span>
 	                </span>
                 </a>
             </li>
@@ -100,32 +90,20 @@
 
 <section id="text_section" class="text_section">
     <div class="center text">
-        <h1>
-            <p th:text="#{home.taxi.title}"></p>
-        </h1>
-        <span>
-             <p th:text="#{home.text1}"></p>
-        </span>
+        <h1 th:text="#{home.taxi.title}"></h1>
+        <span th:text="#{home.text1}"></span>
         <h2>
-            <span>
-                 <p th:text="#{home.benefit.text}"></p>
-            </span>
+            <span th:text="#{home.benefit.text}"></span>
         </h2>
         <ul>
             <li>
-                <span>
-                    <p th:text="#{home.text2}"></p>
-                </span>
+                <span th:text="#{home.text2}"></span>
             </li>
             <li>
-                <span>
-                    <p th:text="#{home.text3}"></p>
-                </span>
+                <span th:text="#{home.text3}"></span>
             </li>
             <li>
-                <span>
-                    <p th:text="#{home.text4}"></p>
-                </span>
+                <span th:text="#{home.text4}"></span>
             </li>
         </ul>
     </div>

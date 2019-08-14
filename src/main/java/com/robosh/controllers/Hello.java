@@ -1,8 +1,5 @@
 package com.robosh.controllers;
 
-import com.robosh.model.entities.Address;
-import com.robosh.repository.AddressRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +16,7 @@ public class Hello {
         return "main";
     }
 
-    @GetMapping("/home")
-    public String homePage(){
-        return "home";
-    }
+
 
     @GetMapping("/client-acc")
     public String clientAccount(){
@@ -39,16 +33,5 @@ public class Hello {
     @GetMapping("/order-taxi")
     public String orderTaxi(){
         return "taxi_order";
-    }
-
-
-    @GetMapping("/login")
-    public String login(){
-        return "login";
-    }
-
-    @GetMapping("/register-client")
-    public String registerClient(){
-        return "register_client";
     }
 }
