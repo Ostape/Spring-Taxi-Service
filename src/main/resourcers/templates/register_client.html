@@ -1,0 +1,83 @@
+<html lang="${param.lang}"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="commonParts/header :: copy"></head>
+<body class="home blog">
+<div id="wrapper">
+    <header id="header">
+        <div th:insert="commonParts/header_white :: copy"></div>
+        <div class="header_blue">
+            <nav th:insert="commonParts/navi_block :: copy"></nav>
+        </div>
+    </header>
+    <div class="center">
+        <div class="register">
+            <form method="POST" action="${pageContext.request.contextPath}/taxi-Kyiv/register">
+                <div class="container">
+                    <h1 th:text="#{register.title}"></h1>
+                    <p th:text="#{register.ask.to.fill}"></p>
+                    <hr>
+
+                    <label><b th:text="#{register.name}"></b></label>
+                    <c:if test="${param.badInput == true}">
+                        <p class="errorsM" th:text="#{register.name.error}"></p>
+                    </c:if>
+                    <input type="text" th:placeholder="#{register.name}" name="name" required>
+
+                    <label><b th:text="#{register.surname}"></b></label>
+                    <c:if test="${param.badInput == true}">
+                        <p class="errorsM" th:text="#{register.name.error}"></p>
+                    </c:if>
+                    <input type="text" th:placeholder="#{register.surname}" name="surname" required>
+
+
+                    <label><b th:text="#{register.phone.number}"></b></label>
+                    <c:if test="${param.badInput == true}">
+                        <p class="errorsM" th:text="#{register.phone.number.error}"></p>
+                    </c:if>
+                    <c:if test="${param.badPhoneNumber == true}">
+                        <p class="errorsM" th:text="#{register.bad.phone.number}"></p>
+                    </c:if>
+                    <input type="text" th:placeholder="#{register.phone.number}" name="phone_number" required>
+                    <br>
+                    <br>
+                    <hr>
+
+                    <label><b th:text="#{register.email}"></b></label>
+                    <c:if test="${param.badInput == true}">
+                        <p class="errorsM" th:text="#{register.email.error}"></p>
+                    </c:if>
+                    <c:if test="${param.badEmail == true}">
+                        <p class="errorsM" th:text="#{register.email.error2}"></p>
+                    </c:if>
+                    <input type="email" th:placeholder="#{register.email}" name="email" required>
+
+
+                    <label><b th:text="#{register.password}"></b></label>
+                    <c:if test="${param.badInput == true}">
+                        <p class="errorsM" th:text="#{register.password.error}"></p>
+                    </c:if>
+                    <input type="password" th:placeholder="#{register.enter.password}" name="password" required>
+
+                    <label><b th:text="#{register.repeat.password}"></b></label>
+                    <input type="password" th:placeholder="#{register.repeat.password}" name="password_repeat" required>
+                    <hr>
+
+                    <p th:text="#{register.agree.creating}"></p><a href="#" th:text="#{register.terms.privacy}"></a>.
+                    <button type="submit" class="registerbtn" th:text="#{register.btn.submit}"></button>
+                </div>
+
+                <div class="container signin">
+                    <p th:text="#{register.have.acc}"> <a href="${pageContext.request.contextPath}/taxi-Kyiv/login"
+                    th:text="#{register.sign.in}"></a>.
+                    </p>
+                </div>
+                <div style="height: 60px"></div>
+            </form>
+        </div>
+    </div>
+
+</div>
+    <footer th:insert="commonParts/footer :: copy"></footer>
+</body>
+</html>

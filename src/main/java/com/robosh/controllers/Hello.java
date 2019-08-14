@@ -40,4 +40,15 @@ public class Hello {
     public String orderTaxi(){
         return "taxi_order";
     }
+
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
+    @GetMapping("/register-client")
+    public String registerClient(){
+        return "register_client";
+    }
 }

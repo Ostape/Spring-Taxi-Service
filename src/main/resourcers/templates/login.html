@@ -1,0 +1,46 @@
+<html lang="${param.lang}"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="commonParts/header :: copy"></head>
+<body class="home blog">
+<div id="wrapper">
+    <header id="header">
+        <div th:insert="commonParts/header_white :: copy"></div>
+        <div class="header_blue">
+            <nav th:insert="commonParts/navi_block :: copy"></nav>
+        </div>
+
+    </header>
+    <div class="center">
+        <div class="register">
+            <form method="POST" action="${pageContext.request.contextPath}/taxi-Kyiv/enterLogin">
+                <div class="container">
+
+                    <h1 th:text="#{login.sign.up}"></h1>
+                    <p th:text="#{login.fill.form}"></p>
+                    <hr>
+                    <c:if test="${param.wrongData == true}">
+                        <p class="errorsM" th:text="#{login.incorrect.input}"></p>
+                    </c:if>
+                    <label><b th:text="#{login.title.phone}"></b></label>
+                    <input type="text" th:placeholder="#{login.phoneNumber}" name="phoneNumber" required>
+                    <label><b th:text="#{login.title.password}"></b></label>
+                    <input type="password" th:placeholder="#{login.password}" name="password" required>
+                    <hr>
+                    <button type="submit" class="registerbtn" th:text="#{login.submit.btn}"></button>
+                </div>
+
+                <div class="container signup">
+                    <p th:text="#{login.have.not.acc}"></p> <a href="/taxi-Kyiv/registerClient" th:text="#{login.sign.up}"></a>.
+                </div>
+                <div style="height: 60px"></div>
+            </form>
+        </div>
+
+    </div>
+    </section>
+
+</div>
+    <footer th:insert="commonParts/footer :: copy"></footer>
+</body>
+</html>
