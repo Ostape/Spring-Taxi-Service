@@ -1,4 +1,4 @@
-<html lang="${param.lang}" xmlns:fmt="http://xmlns.jcp.org/xml/ns/validation/mapping"
+<html lang="${param.lang}"
       xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="commonParts/header :: copy"></head>
@@ -39,8 +39,14 @@
             <li class="around-clock">
                 <a href="#" class="benefits_item">
 	                <span class="benefits_inner">
-	                    <span class="caption"><span class="cell"><fmt:message key="home.benefits.work"/>
-                            <br><fmt:message key="home.benefits.all.day"/> <br>24/7/365</span></span>
+	                    <span class="caption">
+                            <span class="cell">
+                                <p th:text="#{home.benefits.work}"></p>
+                                <br>
+                                <p th:text="#{home.benefits.all.day}"></p>
+                                <br>24/7/365
+                            </span>
+                        </span>
 	                    <span class="icon"></span>
 	                </span>
                 </a>
@@ -48,8 +54,13 @@
             <li class="taxi-online">
                 <a href="#" class="benefits_item">
 	                <span class="benefits_inner">
-	                    <span class="caption"><span class="cell"><fmt:message key="home.benefits.order"/>
-                            <br><fmt:message key="home.benefits.order.online"/></span></span>
+	                    <span class="caption">
+                            <span class="cell">
+                                <p th:text="#{home.benefits.order}"></p>
+                            <br>
+                                <p th:text="#{home.benefits.order.online}"></p>
+                            </span>
+                        </span>
 	                    <span class="icon"></span>
 	                </span>
                 </a>
@@ -57,9 +68,15 @@
             <li class="taxi-station">
                 <a href="#" class="benefits_item">
 	                <span class="benefits_inner">
-	                    <span class="caption"><span
-                                class="cell"><fmt:message key="home.benefits.taxi.aeropot"/>
-                             <br><fmt:message key="home.benefits.taxi.railway.st"/><br><fmt:message key="home.benefits.taxi.auto"/></span></span>
+	                    <span class="caption">
+                            <span class="cell">
+                                <p th:text="#{home.benefits.taxi.aeropot}"></p>
+                             <br>
+                                <p th:text="#{home.benefits.taxi.railway.st}"></p>
+                             <br>
+                                <p th:text="#{home.benefits.taxi.auto}"></p>
+                            </span>
+                        </span>
 	                    <span class="icon"></span>
 	                </span>
                 </a>
@@ -67,8 +84,13 @@
             <li class="low-rates">
                 <a href="#" class="benefits_item">
 	                <span class="benefits_inner">
-	                    <span class="caption"><span class="cell"><fmt:message key="home.benefits.low"/>
-                            <br><fmt:message key="home.benefits.low.tariff"/></span></span>
+	                    <span class="caption">
+                            <span class="cell">
+                                <p th:text="#{home.benefits.low}"></p>
+                            <br>
+                                <p th:text="#{home.benefits.low.tariff}"></p>
+                            </span>
+                        </span>
 	                    <span class="icon"></span>
 	                </span>
                 </a>
@@ -80,21 +102,37 @@
 
 <section id="text_section" class="text_section">
     <div class="center text">
-        <h1><fmt:message key="home.taxi.title"/></h1>
-        <span><fmt:message key="home.text1"/></span>
-        <h2><span><fmt:message key="home.benefit.text"/></span></h2>
+        <h1>
+            <p th:text="#{home.taxi.title}"></p>
+        </h1>
+        <span>
+             <p th:text="#{home.text1}"></p>
+        </span>
+        <h2>
+            <span>
+                 <p th:text="#{home.benefit.text}"></p>
+            </span>
+        </h2>
         <ul>
-            <li><span><fmt:message key="home.text2"/></span>
+            <li>
+                <span>
+                    <p th:text="#{home.text2}"></p>
+                </span>
             </li>
-            <li><span><fmt:message key="home.text.3"/></span>
+            <li>
+                <span>
+                    <p th:text="#{home.text.3}"></p>
+                </span>
             </li>
-            <li><span><fmt:message key="home.text.4"/></span>
+            <li>
+                <span>
+                    <p th:text="#{home.text.4}"></p>
+                </span>
             </li>
         </ul>
     </div>
 </section>
 
-
-<footer th:insert="commonParts/footer :: copy"> </footer>
+<footer th:insert="commonParts/footer :: copy"></footer>
 </body>
 </html>

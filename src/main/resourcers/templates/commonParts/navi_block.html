@@ -1,22 +1,39 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:fmt="http://jboss.org/xml/ns/javax/validation/mapping">
+<html xmlns:th="http://www.thymeleaf.org">
 <body>
 
 <nav id="navi_block" th:fragment="copy">
     <div class="center">
-        <div id="navmobile-btn"><fmt:message key="label.header.menu"/></div>
+        <div id="navmobile-btn">
+            <p th:text="#{label.header.menu}"></p>
+        </div>
+
         <ul id="menu-main-menu" class="main_menu ">
-            <li id="menu-item-45" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-45"><a
-                    href="#"><fmt:message key="label.header.menu.tariff"/></a></li>
-            <li id="menu-item-44" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-44"><a
-                    href="#"><fmt:message key="label.header.menu.about.us"/></a></li>
-            <li id="menu-item-47" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-47"><a
-                    href="#"><fmt:message key="label.header.menu.news"/></a></li>
-            <li id="menu-item-431" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-431"><a
-                    href="${pageContext.request.contextPath}/taxi-Kyiv/makeOrder">
-                <fmt:message key="label.header.menu.for.make.order"/></a></li>
-            <li id="menu-item-42" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42"><a
-                    href="#"><fmt:message key="label.header.menu.contacts"/></a></li>
+            <li id="menu-item-45" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-45">
+                <a href="#">
+                    <p th:text="#{label.header.menu.tariff}"></p>
+                </a>
+            </li>
+            <li id="menu-item-44" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-44">
+                <a href="#">
+                    <p th:text="#{label.header.menu.about.us}"></p>
+               </a>
+            </li>
+            <li id="menu-item-47" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-47">
+                <a href="#">
+                    <p th:text="#{label.header.menu.news}"></p>
+                </a>
+            </li>
+            <li id="menu-item-431" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-431">
+                <a href="${pageContext.request.contextPath}/taxi-Kyiv/makeOrder">
+                    <p th:text="#{label.header.menu.for.make.order}"></p>
+                </a>
+            </li>
+            <li id="menu-item-42" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42">
+                <a href="#">
+                    <p th:text="#{label.header.menu.contacts}"></p>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

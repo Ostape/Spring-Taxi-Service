@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:fmt="http://jboss.org/xml/ns/javax/validation/mapping">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <body>
     <div class="header_white clearfix" th:fragment="copy">
@@ -9,7 +9,8 @@
             </a>
             <div style="float: right; width: 420px">
                 <div class="signClient">
-                    <p style="float: left;padding-top: 7px; color: #009EDF"><c:out
+                    <p style="float: left;padding-top: 7px; color: #009EDF">
+                        <c:out
                             value="${sessionScope.loginedPerson.name}"/>
                         <c:out value="${sessionScope.loginedPerson.surname}"/></p>
 
@@ -21,16 +22,18 @@
                 </div>
 
                 <div class="header_city">
-                    <div class="city_current"><fmt:message key="label.current.city"/></div>
+                    <div class="city_current">
+                        <p th:text="#{label.current.city}"></p>
+                    </div>
                 </div>
 
                 <div class="lang_block">
                     <ul id="lang">
                         <li class="lang-item lang-item-2">
-                            <a href="?locale=ua">ua</a>
+                            <a href="?lang=ua">ua</a>
                         </li>
                         <li class="lang-item lang-item-5">
-                            <a href="?locale=en">en</a>
+                            <a href="?lang=en">en</a>
                         </li>
                     </ul>
                 </div>
