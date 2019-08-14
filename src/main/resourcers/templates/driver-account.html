@@ -1,0 +1,80 @@
+<html lang="${param.lang}"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:insert="commonParts/header :: copy"></head>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-grid.css">
+<body class="home blog">
+<div id="wrapper">
+    <header id="header">
+        <div th:insert="commonParts/header_white :: copy"></div>
+        <div class="header_blue">
+            <nav th:insert="commonParts/navi_block :: copy"></nav>
+        </div>
+
+    </header>
+
+    <div class="center">
+        <div class="nazar" >
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="/img/clientPhoto.png" style="width: 65% ">
+                    <div class="row">
+                        <div class="col-lg-12">
+<!--                            todo-->
+                            <form class="dr" action="${pageContext.request.contextPath}/taxi-Kyiv/logOut">
+                                <button type="submit" class="account-driver-btns" th:text="#{driver.account.logout}"></button>
+                            </form>
+<!--                            todo-->
+                            <a href="${pageContext.request.contextPath}/taxi-Kyiv/showAllOrders?pagination=1">
+                                <button class="account-driver-btns" th:text="#{driver.account.show.pag}"></button>
+                            </a>
+                        </div>
+                        <div class="col-lg-12">
+                            <c:if test="${param.wrongInput == true}">
+                                <p class="errorsM bad-order-input" th:text="#{driver.account.mess.error}"></p>
+                            </c:if>
+
+                            <c:if test="${param.noSuchOrder == true}">
+                                <p class="errorsM bad-order-input" th:text="#{driver.account.mess.error.2}"></p>
+                            </c:if>
+
+                            <c:if test="${sessionScope.loginedPerson.driverStatus.toString() == 'BOOKED'}">
+<!--                                todo-->
+                                <form class="make-order" action="${pageContext.request.contextPath}/taxi-Kyiv/enterNumOrder"
+                                      method="POST">
+                                    <button type="submit" class="account-driver-btns" th:text="#{driver.account.order}"></button>
+                                    <input type="text" name="executeOrder" class="text-order" th::placeholder="#{driver.account.enter}"/>
+                                </form>
+                            </c:if>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <ul>
+                        <li>
+                            <strong>
+                                <p><c:out value="${sessionScope.loginedPerson.name}"/>
+                                    <c:out value="${sessionScope.loginedPerson.surname}"/></p>
+                            </strong>
+                        </li>
+
+                        <li class="liFont">
+                            <p th:text="#{driver.phone}">: <c:out value="${sessionScope.loginedPerson.phoneNumber}"/></p>
+                        </li>
+
+                        <li class="liFont">
+                            <p th:text="#{driver.auto}">: <c:out value="${sessionScope.loginedPerson.car.carType}"/></p>
+                        </li>
+
+                        <li class="liFont">
+                            <p th:text="#{driver.status}">: <c:out value="${sessionScope.loginedPerson.driverStatus}"/></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:insert="commonParts/footer :: copy"></footer>
+</body>
+</html>
