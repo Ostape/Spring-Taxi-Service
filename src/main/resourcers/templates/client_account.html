@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="${param.lang}"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:insert="commonParts/header :: copy"></head>
+
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-grid.css">
+<body class="home blog">
+<div id="wrapper">
+    <header id="header">
+        <div th:insert="commonParts/header_white :: copy"></div>
+        <div class="header_blue">
+            <nav th:insert="commonParts/navi_block :: copy"></nav>
+        </div>
+    </header>
+
+    <div class="center">
+        <div class="nazar" >
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="/img/clientPhoto.png" style="width: 65% ">
+                </div>
+
+                <div class="col-lg-6">
+                    <ul>
+                        <li>
+                            <strong>
+                                <p>
+                                    <c:out value="${sessionScope.loginedPerson.name}"/>
+                                    <c:out value="${sessionScope.loginedPerson.surname}"/>
+                                </p>
+                            </strong>
+                        </li>
+
+                        <li class="liFont">
+                            <p>
+                                <p th:text="#{client.account.mail}"></p>
+                                <c:out value="${sessionScope.loginedPerson.email}"/>
+                            </p>
+                        </li>
+
+                        <li class="liFont">
+                            <p>
+                                <p th:text="#{client.account.phone}"></p>
+                                <c:out value="${sessionScope.loginedPerson.phoneNumber}"/>
+                            </p>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <form action="${pageContext.request.contextPath}/taxi-Kyiv/logOut">
+                    <button type="submit" class="logout">
+                        <p th:text="#{client.account.logout}"></p>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    <footer th:insert="commonParts/footer :: copy"></footer>
+</body>
+</html>

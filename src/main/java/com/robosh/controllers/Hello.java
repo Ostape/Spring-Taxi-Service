@@ -23,4 +23,9 @@ public class Hello {
     public String homePage(){
         return "home";
     }
+
+    @GetMapping("/client-acc")
+    public String clientAccount(){
+        return "client_account";
+    }
 }
