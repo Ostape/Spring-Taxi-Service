@@ -30,7 +30,7 @@ public class LoginController {
         return "login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/perform_login")
     public String enterLogin(){
         //todo
         return "redirect:/taxi-kyiv/client-account";

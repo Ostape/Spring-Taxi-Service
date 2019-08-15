@@ -32,3 +32,5 @@ git.properties
 *.iml
 
 target/
+####
+src/main/resourcers/application.properties
