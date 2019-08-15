@@ -26,12 +26,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers("/", "/css/**", "/img/**", "/taxi-kyiv",
-                            "/taxi-kyiv/register-client").permitAll()
+                            "/taxi-kyiv/register-client", "?lang=ua", "?lang=en").permitAll()
                     .anyRequest()
                     .authenticated()
                 .and()
                     .formLogin()
                     .loginPage("/taxi-kyiv/login")
+                    .loginProcessingUrl("/taxi-kyiv/perform_login")
+                    .defaultSuccessUrl("/taxi-kyiv/driver-account",true)
+                    .defaultSuccessUrl("/taxi-kyiv/client-account",true)
+                    .failureUrl("/taxi-kyiv/login?error=true")
                     .permitAll()
                 .and()
                     .logout()

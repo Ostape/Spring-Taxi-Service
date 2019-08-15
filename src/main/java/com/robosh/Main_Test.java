@@ -5,8 +5,31 @@ import com.robosh.model.entities.Client;
 
 public class Main_Test {
     public static void main(String[] args) {
-        Address address1 = new Address(2, "ff", "aa");
-        Address address2 = new Address(1, "ff", "aa");
-        System.out.println(address1.equals(address2));
+
+        System.out.println(method());
     }
+
+    private static int method(){
+        try {
+
+            System.out.println("aaaa");
+            if (2 == 2)
+            throw new IllegalArgumentException();
+        }catch (IllegalArgumentException e) {
+            System.out.println("before catch");
+            return 12;
+        }
+        finally {
+            System.out.println("finale");
+
+        }
+        return 222;
+    }
+
+}
+
+abstract class A{
+    private String a;
+
+    public A(){}
 }
