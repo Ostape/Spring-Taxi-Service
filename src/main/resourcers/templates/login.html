@@ -1,5 +1,6 @@
 <html lang="${param.lang}"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head th:insert="commonParts/header :: copy"></head>
 <body class="home blog">
@@ -12,21 +13,15 @@
     </header>
     <div class="center">
         <div class="register">
-            <form method="POST" action="/taxi-kyiv/enterLogin">
+            <form method="POST" th:action="@{/taxi-kyiv/login}">
                 <div class="container">
 
                     <h1 th:text="#{login.sign.up}"></h1>
                     <p th:text="#{login.fill.form}"></p>
                     <hr>
-
-
-                    <c:if test="${param.wrongData == true}">
-                        <p class="errorsM" th:text="#{login.incorrect.input}"></p>
-                    </c:if>
-
-
+                    <p class="errorsM" th:if="${param.error}" th:text="#{login.incorrect.input}"></p>
                     <label><b th:text="#{login.title.phone}"></b></label>
-                    <input type="text" th:placeholder="#{login.phoneNumber}" name="phoneNumber" required>
+                    <input type="text" th:placeholder="#{login.phoneNumber}" name="username" required>
                     <label><b th:text="#{login.title.password}"></b></label>
                     <input type="password" th:placeholder="#{login.password}" name="password" required>
                     <hr>

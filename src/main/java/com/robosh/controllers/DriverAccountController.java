@@ -8,9 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/taxi-kyiv/driver-account")
 public class DriverAccountController {
+    @GetMapping
+    public String showDriverPage(){
+        return "driver_account";
+    }
+
     @GetMapping("/show-orders")
     public String showDriverOrders(){
-        //todo order page
+        //todo paggination page
         return "order";
     }
 }

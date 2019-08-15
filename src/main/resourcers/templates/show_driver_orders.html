@@ -1,0 +1,73 @@
+<html lang="${param.lang}"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:insert="commonParts/header :: copy"></head>
+<body class="home blog">
+<div id="wrapper">
+    <header id="header">
+        <div th:insert="commonParts/header_white :: copy"></div>
+        <div class="header_blue">
+            <nav th:insert="commonParts/navi_block :: copy"></nav>
+        </div>
+    </header>
+
+
+    <div class="center">
+        <div class="nazar">
+
+            <div class="ordersHeader">
+                <p th:text="#{showOrders.orders.title}"></p>
+            </div>
+            <div class="viewData">
+                <div class="idOrder">
+                    <p th:text="#{showOrders.orders.id}"></p>
+                </div>
+                <div class="nameClient">
+                    <p th:text="#{showOrders.client}"></p>
+                </div>
+                <div class="street">
+                    <p th:text="#{showOrders.street.dep}"></p>
+                </div>
+                <div class="street">
+                    <p th:text="#{showOrders.street.arr}"></p>
+                </div>
+                <div class="costVoage">
+                    <p th:text="#{showOrders.price}"></p>
+                </div>
+            </div>
+            <c:forEach items="${requestScope.orderList}" var="order" begin="0" end="${requestScope.recordPerPage -1}">
+                <div class="viewData data">
+                    <div class="idOrder">
+                        <p><c:out value="${order.idOrder}"/></p>
+                    </div>
+                    <div class="nameClient">
+                        <p><c:out value="${order.client.name}"/> <c:out value="${order.client.surname}"/></p>
+                    </div>
+                    <div class="street">
+                        <p><c:out value="${order.addressArrive.street}"/> <c:out
+                                value="${order.addressArrive.houseNumber}"/></p>
+                    </div>
+                    <div class="street">
+                        <p><c:out value="${order.addressDeparture.street}"/> <c:out
+                                value="${order.addressDeparture.houseNumber}"/></p>
+                    </div>
+                    <div class="costVoage">
+                        <p><c:out value="${order.costWithDiscount}"/></p>
+                    </div>
+                </div>
+
+            </c:forEach>
+        </div>
+        <nav aria-label="...">
+            <ul class="pagination pagination-sm justify-content-center">
+                <c:forEach var="pagNumber" begin = "1" end = "${requestScope.pageNumbers}">
+                    <li class="page-item">
+                        <a class="page-link" href="${pageContext.request.contextPath}/taxi-Kyiv/showAllOrders?pagination=${pagNumber}"><c:out value = "${pagNumber}"/></a>
+                    </li>
+                </c:forEach>
+            </ul>
+        </nav>
+    </div>
+</div>
+    <footer th:insert="commonParts/footer :: copy"></footer>
+</body>
+</html>

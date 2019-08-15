@@ -32,10 +32,8 @@
                         </li>
 
                         <li class="liFont">
-                            <p>
                                 <p th:text="#{client.account.mail}"></p>
-                                <c:out value="${sessionScope.loginedPerson.email}"/>
-                            </p>
+<!--                                <c:out value="${sessionScope.loginedPerson.email}"/>-->
                         </li>
 
                         <li class="liFont">
@@ -49,7 +47,7 @@
                 </div>
             </div>
             <div style="text-align: center;">
-                <form action="${pageContext.request.contextPath}/taxi-Kyiv/logOut">
+                <form th:action="@{/logout}" method="post">
                     <button type="submit" class="logout">
                         <p th:text="#{client.account.logout}"></p>
                     </button>

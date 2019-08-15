@@ -1,6 +1,7 @@
 package com.robosh;
 
 import com.robosh.model.entities.Address;
+import com.robosh.model.entities.Client;
 
 public class Main_Test {
     public static void main(String[] args) {
