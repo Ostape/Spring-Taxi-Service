@@ -17,8 +17,8 @@ public class HomePageController {
 
     @GetMapping("/taxi-kyiv")
     public String homePage(){
-        System.out.println(addressRepository.findByIdAddress(1));
-        System.out.println(driverRepository.findById(1).get());
+        System.out.println(addressRepository.findByIdAddress(1L));
+        System.out.println(driverRepository.findById(1L).get());
         return "home_page";
     }
 }
