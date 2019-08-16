@@ -1,6 +1,7 @@
 package com.robosh.controllers;
 
 import com.robosh.repository.AddressRepository;
+import com.robosh.repository.DriverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,13 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomePageController {
 
     @Autowired
-    private AddressRepository addressRepository;
+    public AddressRepository addressRepository;
+
+    @Autowired
+    public DriverRepository driverRepository;
 
     @GetMapping("/taxi-kyiv")
     public String homePage(){
-        System.out.println(addressRepository.getOne(1));
-
-
+        System.out.println(addressRepository.findByIdAddress(1));
+        System.out.println(driverRepository.findById(1).get());
         return "home_page";
     }
 }

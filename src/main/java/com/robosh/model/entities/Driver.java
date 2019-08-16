@@ -1,10 +1,10 @@
 package com.robosh.model.entities;
 
 import com.robosh.model.enums.DriverStatus;
+import com.robosh.model.enums.Role;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -16,8 +16,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "driver")
 public class Driver extends Person {
-    //todo enumerated
+    @Enumerated(value = EnumType.STRING)
     private DriverStatus driverStatus;
+
+    @OneToOne
+    @JoinColumn(name="id_car")
     private Car car;
     private String middleName;
+
+    {
+        roles = Role.DRIVER;
+    }
 }
