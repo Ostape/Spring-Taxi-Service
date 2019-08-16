@@ -1,33 +1,46 @@
 package com.robosh.model.entities;
 
 import com.robosh.model.enums.OrderStatus;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString(callSuper=true, includeFieldNames=true)
 
-//@Entity
+@Entity
+@Table(name = "`order`")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idOrder;
+
+    @Enumerated(value = EnumType.STRING)
     private OrderStatus orderStatus;
+
+    @ManyToOne
+    @JoinColumn(name = "id_client")
     private Client client;
+
+    @ManyToOne
+    @JoinColumn(name = "id_driver")
     private Driver driver;
+
+    @ManyToOne
+    @JoinColumn(name = "id_address_arrive")
     private Address addressArrive;
+
+    @ManyToOne
+    @JoinColumn(name = "id_address_departure")
     private Address addressDeparture;
+
+    @ManyToOne
+    @JoinColumn(name = "id_coupon")
     private Coupon coupon;
+
     private int cost;
     private int costWithDiscount;
 }
