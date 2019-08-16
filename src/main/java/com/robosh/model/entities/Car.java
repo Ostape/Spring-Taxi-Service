@@ -19,7 +19,7 @@ import javax.persistence.Id;
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idCar;
+    private Long idCar;
     private String carNumber;
     private String brand;
     private String color;

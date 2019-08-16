@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 //todo integer -> long
-public interface DriverRepository extends JpaRepository<Driver, Integer> {
+public interface DriverRepository extends JpaRepository<Driver, Long> {
 }

@@ -21,7 +21,7 @@ import javax.persistence.Id;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idOrder;
+    private Long idOrder;
     private OrderStatus orderStatus;
     private Client client;
     private Driver driver;
