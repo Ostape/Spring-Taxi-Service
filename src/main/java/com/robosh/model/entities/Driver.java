@@ -16,6 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "driver")
 public class Driver extends Person {
+    //todo enumerated
     private DriverStatus driverStatus;
     private Car car;
     private String middleName;
