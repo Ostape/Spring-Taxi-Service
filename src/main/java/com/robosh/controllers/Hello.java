@@ -1,5 +1,8 @@
 package com.robosh.controllers;
 
+import com.robosh.model.entities.Client;
+import com.robosh.repository.ClientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,9 +13,12 @@ public class Hello {
 //    @Autowired
 //    private AddressRepository addressRepository;
 
+    @Autowired
+    ClientRepository clientRepository;
+
     @GetMapping("/main")
-    public String returnMain(Model model){
-        model.addAttribute("name", "vasia");
+    public String returnMain(){
+
         return "main";
     }
 

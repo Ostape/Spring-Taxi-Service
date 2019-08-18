@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Data
@@ -22,6 +19,8 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idAddress;
 
+    @Column(nullable = false)
     private String street;
+    @Column(nullable = false)
     private String houseNumber;
 }

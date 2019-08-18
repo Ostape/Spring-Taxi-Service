@@ -20,11 +20,11 @@
                     <div class="row">
                         <div class="col-lg-12">
 <!--                            todo-->
-                            <form class="dr" action="${pageContext.request.contextPath}/taxi-Kyiv/logOut">
+                            <form class="dr" th:action="@{/logout}">
                                 <button type="submit" class="account-driver-btns" th:text="#{driver.account.logout}"></button>
                             </form>
 <!--                            todo-->
-                            <a href="${pageContext.request.contextPath}/taxi-Kyiv/showAllOrders?pagination=1">
+                            <a href="/taxi-Kyiv/showAllOrders?pagination=1">
                                 <button class="account-driver-btns" th:text="#{driver.account.show.pag}"></button>
                             </a>
                         </div>
@@ -39,7 +39,7 @@
 
                             <c:if test="${sessionScope.loginedPerson.driverStatus.toString() == 'BOOKED'}">
 <!--                                todo-->
-                                <form class="make-order" action="${pageContext.request.contextPath}/taxi-Kyiv/enterNumOrder"
+                                <form class="make-order" action="/taxi-Kyiv/enterNumOrder"
                                       method="POST">
                                     <button type="submit" class="account-driver-btns" th:text="#{driver.account.order}"></button>
                                     <input type="text" name="executeOrder" class="text-order" th::placeholder="#{driver.account.enter}"/>

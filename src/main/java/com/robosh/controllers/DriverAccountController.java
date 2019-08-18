@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DriverAccountController {
     @GetMapping
     public String showDriverPage(){
+        System.out.println("in driver");
         return "driver_account";
     }
 

@@ -9,17 +9,21 @@ import javax.persistence.Table;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @ToString(callSuper=true, includeFieldNames=true)
-
 @Entity
-@Table(name = "client")
 public class Client extends Person {
     private String email;
 
-    {
-        roles=Role.CLIENT;
+    public Client(String email) {
+        this.email = email;
+    }
+
+    @Builder(builderMethodName = "clientBuilder")
+
+    public Client(Long personId, String name, String surname,
+                  String password, String phoneNumber, Boolean active, Role role, String email) {
+        super(personId, name, surname, password, phoneNumber, active, role);
+        this.email = email;
     }
 }

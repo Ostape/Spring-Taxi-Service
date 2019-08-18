@@ -1,6 +1,5 @@
 <html lang="${param.lang}"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="commonParts/header :: copy"></head>
 <body class="home blog">
@@ -13,8 +12,7 @@
     </header>
     <div class="center">
         <div class="register">
-
-            <form method="POST" th:action="@{/taxi-kyiv/perform_login}">
+            <form method="POST" th:action="#{/taxi-kyiv/login}">
                 <div class="container">
 
                     <h1 th:text="#{login.sign.up}"></h1>
@@ -30,7 +28,7 @@
                 </div>
 
                 <div class="container signup">
-                    <p th:text="#{login.have.not.acc}"></p> <a href="/taxi-kyiv/register-client" th:text="#{login.sign.up}"></a>.
+                    <p th:text="#{login.have.not.acc}"></p> <a th:href="@{/taxi-kyiv/register-client}" th:text="#{login.sign.up}"></a>.
                 </div>
                 <div style="height: 60px"></div>
             </form>

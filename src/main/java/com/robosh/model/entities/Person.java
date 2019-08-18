@@ -7,10 +7,11 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@MappedSuperclass
+@Entity
 public abstract class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,7 +20,8 @@ public abstract class Person {
     protected String surname;
     protected String password;
     protected String phoneNumber;
+    protected Boolean active;
 
-    @Transient
-    protected Role roles;
+    @Enumerated(value = EnumType.STRING)
+    protected Role role;
 }
