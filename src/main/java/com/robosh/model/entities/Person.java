@@ -16,10 +16,15 @@ public abstract class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long personId;
+    @Column(nullable = false)
     protected String name;
+    @Column(nullable = false)
     protected String surname;
+    @Column(nullable = false)
     protected String password;
+    @Column(unique = true, nullable = false)
     protected String phoneNumber;
+    @Column(nullable = false)
     protected Boolean active;
 
     @Enumerated(value = EnumType.STRING)

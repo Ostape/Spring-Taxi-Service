@@ -19,6 +19,7 @@ public class Order {
     private Long idOrder;
 
     @Enumerated(value = EnumType.STRING)
+    @Column(nullable = false)
     private OrderStatus orderStatus;
 
     @ManyToOne
