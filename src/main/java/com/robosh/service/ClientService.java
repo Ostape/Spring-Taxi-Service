@@ -18,7 +18,7 @@ public class ClientService {
     }
 
     public boolean isValidClientData(RegistrationClientDto clientDto){
-        //todo tofo
+        clientDto.
         return true;
     }
 }

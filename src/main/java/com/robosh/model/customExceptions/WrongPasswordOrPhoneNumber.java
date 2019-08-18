@@ -4,7 +4,7 @@ package com.robosh.model.customExceptions;
  * thrown when input password and phone number
  * @author Orest Shemelyuk
  */
-public class WrongPasswordOrPhoneNumber extends Exception {
+public class WrongPasswordOrPhoneNumber extends RuntimeException {
     public WrongPasswordOrPhoneNumber() {
     }
 

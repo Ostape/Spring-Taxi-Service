@@ -5,7 +5,7 @@ package com.robosh.model.customExceptions;
  * thrown when email is already exists in database
  * @author Orest Shemelyuk
  */
-public class EmailIsAlreadyTaken extends Exception {
+public class EmailIsAlreadyTaken extends RuntimeException {
     public EmailIsAlreadyTaken() {
     }
 
