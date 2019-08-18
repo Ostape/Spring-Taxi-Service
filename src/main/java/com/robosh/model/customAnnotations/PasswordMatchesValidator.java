@@ -12,8 +12,9 @@ public class PasswordMatchesValidator
     @Override
     public void initialize(PasswordMatches constraintAnnotation) {
     }
+
     @Override
-    public boolean isValid(Object obj, ConstraintValidatorContext context){
+    public boolean isValid(Object obj, ConstraintValidatorContext context) {
         RegistrationClientDto clientDto = (RegistrationClientDto) obj;
         return clientDto.getPassword().equals(clientDto.getPassword_repeat());
     }
