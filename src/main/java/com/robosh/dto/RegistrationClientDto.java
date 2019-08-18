@@ -16,7 +16,7 @@ public class RegistrationClientDto {
     @NotNull
     @NotEmpty
     private String name;
-    
+
     @NotNull
     @NotEmpty
     private String surname;
