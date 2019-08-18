@@ -26,21 +26,20 @@ public class RegisterController {
 
     @PostMapping
     public String registerClient(RegistrationClientDto dto){
+        if (dto != null && clientService.isValidClientData(dto)) {
+            Client client = clientService.convertDtoClientToClientEntity(dto);
+            clientService.saveClient(client);
+            return "redirect:/taxi-kyiv/login";
+        }
+        else{
+            String errorParam = getErrorRegistration();
+            return "redirect:/taxi-kyiv/register-client" + errorParam;
+//            register_client
+        }
+    }
 
-        //todo validation
-        Client client = Client.clientBuilder()
-                .name(dto.getName())
-                .surname(dto.getSurname())
-                .email(dto.getEmail())
-                .phoneNumber(dto.getPhone_number())
-                .password(dto.getPassword())
-                .role(Role.CLIENT)
-                .active(true)
-                .build();
-
-
-        clientService.saveClient(client);
-        System.out.println(dto);
-        return "redirect:/taxi-kyiv/login";
+    private String getErrorRegistration(){
+//
+        return "?badName=true";
     }
 }

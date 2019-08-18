@@ -61,7 +61,7 @@
             <ul class="pagination pagination-sm justify-content-center">
                 <c:forEach var="pagNumber" begin = "1" end = "${requestScope.pageNumbers}">
                     <li class="page-item">
-                        <a class="page-link" href="${pageContext.request.contextPath}/taxi-Kyiv/showAllOrders?pagination=${pagNumber}"><c:out value = "${pagNumber}"/></a>
+                        <a class="page-link" href="/taxi-Kyiv/showAllOrders?pagination=${pagNumber}"><c:out value = "${pagNumber}"/></a>
                     </li>
                 </c:forEach>
             </ul>

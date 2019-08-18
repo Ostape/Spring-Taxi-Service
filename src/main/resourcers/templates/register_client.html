@@ -19,21 +19,16 @@
                     <hr>
 
                     <label><b th:text="#{register.name}"></b></label>
-                        <p class="errorsM" th:if="${param.badInput}" th:text="#{register.name.error}"></p>
+                        <p class="errorsM" th:if="${param.badName}" th:text="#{register.name.error}"></p>
                     <input type="text" th:placeholder="#{register.name}" name="name" required>
 
                     <label><b th:text="#{register.surname}"></b></label>
-                        <p class="errorsM" th:if="${param.badInput}" th:text="#{register.name.error}"></p>
+                        <p class="errorsM" th:if="${param.badName}" th:text="#{register.name.error}"></p>
                     <input type="text" th:placeholder="#{register.surname}" name="surname" required>
 
-
                     <label><b th:text="#{register.phone.number}"></b></label>
-<!--                    <c:if test="${param.badInput == true}">-->
-<!--                        <p class="errorsM" th:if="${param.badInput}" th:text="#{register.phone.number.error}"></p>-->
-<!--                    </c:if>-->
-<!--                    <c:if test="${param.badPhoneNumber == true}">-->
-<!--                        <p class="errorsM" th:text="#{register.bad.phone.number}"></p>-->
-<!--                    </c:if>-->
+                        <p class="errorsM" th:if="${param.badInput}" th:text="#{register.phone.number.error}"></p>
+                        <p class="errorsM" th:if="${param.badPhoneNumber}" th:text="#{register.bad.phone.number}"></p>
                     <input type="text" th:placeholder="#{register.phone.number}" name="phone_number" required>
                     <br>
                     <br>
@@ -64,9 +59,9 @@
                 </div>
 
                 <div class="container signin">
-                    <p th:text="#{register.have.acc}"> <a th:href="@{/taxi-kyiv/login}"
+                    <p th:text="#{register.have.acc}"></p> <a th:href="@{/taxi-kyiv/login}"
                     th:text="#{register.sign.in}"></a>.
-                    </p>
+
                 </div>
                 <div style="height: 60px"></div>
             </form>

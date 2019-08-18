@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head th:insert="commonParts/header :: copy"></head>
 
-<link rel="stylesheet" type="text/css" href="/css/bootstrap-grid.css">
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-grid.css}">
 <body class="home blog">
 <div id="wrapper">
     <header id="header">
@@ -17,7 +17,7 @@
         <div class="nazar" >
             <div class="row">
                 <div class="col-lg-6">
-                    <img src="/img/clientPhoto.png" style="width: 65% ">
+                    <img th:src="/img/clientPhoto.png" style="width: 65% ">
                 </div>
 
                 <div class="col-lg-6">
