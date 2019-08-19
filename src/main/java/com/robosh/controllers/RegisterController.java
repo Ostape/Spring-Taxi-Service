@@ -2,6 +2,7 @@ package com.robosh.controllers;
 
 import com.robosh.dto.RegistrationClientDto;
 import com.robosh.model.customExceptions.EmailIsAlreadyTaken;
+import com.robosh.model.customExceptions.PhoneNumberIsAlreadyTaken;
 import com.robosh.model.entities.Client;
 import com.robosh.service.ClientService;
 import org.springframework.stereotype.Controller;
@@ -38,10 +39,13 @@ public class RegisterController {
                                        BindingResult result, WebRequest request, Errors errors){
         Client registered = new Client();
         if (!result.hasErrors()) {
+            System.out.println("creating user");
             registered = createUserAccount(dto, result);
         }
         if (registered == null) {
             System.out.println("email");
+
+
             result.rejectValue("email", "message.regError");
         }
         if (result.hasErrors()) {
@@ -58,6 +62,8 @@ public class RegisterController {
         try {
             registered = clientService.registerNewClient(accountDto);
         } catch (EmailIsAlreadyTaken e) {
+            return null;
+        } catch (PhoneNumberIsAlreadyTaken e){
             return null;
         }
         return registered;
