@@ -34,38 +34,49 @@
                     <p th:text="#{showOrders.price}"></p>
                 </div>
             </div>
-            <c:forEach items="${requestScope.orderList}" var="order" begin="0" end="${requestScope.recordPerPage -1}">
+
+            <tr th:each="order : ${orderPage.content}">
                 <div class="viewData data">
                     <div class="idOrder">
-                        <p><c:out value="${order.idOrder}"/></p>
+                       <p th:text="${order.idOrder}"></p>
                     </div>
                     <div class="nameClient">
-                        <p><c:out value="${order.client.name}"/> <c:out value="${order.client.surname}"/></p>
+                        <p th:text="${order.client.name}"></p>
                     </div>
                     <div class="street">
-                        <p><c:out value="${order.addressArrive.street}"/> <c:out
-                                value="${order.addressArrive.houseNumber}"/></p>
+                        <b style="display: inline " th:text="${order.addressDeparture.street}" ></b><b style="display: inline" th:text="${order.addressDeparture.houseNumber}" ></b>
                     </div>
                     <div class="street">
-                        <p><c:out value="${order.addressDeparture.street}"/> <c:out
-                                value="${order.addressDeparture.houseNumber}"/></p>
+                        <b style="display: inline" th:text="${order.addressDeparture.street}" ></b> <b style="display: inline" th:text="${order.addressDeparture.houseNumber}" ></b>
                     </div>
                     <div class="costVoage">
-                        <p><c:out value="${order.costWithDiscount}"/></p>
+                        <p th:text="${order.costWithDiscount}"></p>
                     </div>
                 </div>
+            </tr>
 
-            </c:forEach>
+<!--                <div th:if="${orderPage.totalPages > 0}" class="pagination"-->
+<!--                     th:each="pageNumber : ${pageNumbers}">-->
+<!--                    <a th:href="@{/taxi-kyiv/driver-account/show-orders(size=${orderPage.size}, page=${pageNumber})}"-->
+<!--                       th:text="${pageNumber}"-->
+<!--                       th:class="${pageNumber==orderPage.number + 1} ? active"></a>-->
+<!--                </div>-->
+
+
+            <nav aria-label="...">
+                <ul class="pagination pagination-sm justify-content-center" >
+
+                        <li class="page-item" th:if="${orderPage.totalPages > 0}"
+                            th:each="pageNumber : ${pageNumbers}">
+                            <a class="page-link" th:href="@{/taxi-kyiv/driver-account/show-orders(size=${orderPage.size}, page=${pageNumber})}"
+                               th:text="${pageNumber}"
+                               th:class="${pageNumber==orderPage.number + 1} ? active"></a>
+                        </li>
+
+                </ul>
+            </nav>
         </div>
-        <nav aria-label="...">
-            <ul class="pagination pagination-sm justify-content-center">
-                <c:forEach var="pagNumber" begin = "1" end = "${requestScope.pageNumbers}">
-                    <li class="page-item">
-                        <a class="page-link" href="/taxi-Kyiv/showAllOrders?pagination=${pagNumber}"><c:out value = "${pagNumber}"/></a>
-                    </li>
-                </c:forEach>
-            </ul>
-        </nav>
+
     </div>
 </div>
     <footer th:insert="commonParts/footer :: copy"></footer>

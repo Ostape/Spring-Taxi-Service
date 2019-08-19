@@ -24,7 +24,7 @@
                                 <button type="submit" class="account-driver-btns" th:text="#{driver.account.logout}"></button>
                             </form>
 <!--                            todo-->
-                            <a href="/taxi-Kyiv/showAllOrders?pagination=1">
+                            <a th:href="@{/taxi-kyiv/driver-account/show-orders}">
                                 <button class="account-driver-btns" th:text="#{driver.account.show.pag}"></button>
                             </a>
                         </div>
@@ -39,7 +39,7 @@
 
                             <c:if test="${sessionScope.loginedPerson.driverStatus.toString() == 'BOOKED'}">
 <!--                                todo-->
-                                <form class="make-order" th:action="@{/taxi-Kyiv/enterNumOrder}"
+                                <form class="make-order" th:action="@{/taxi-kyiv/driver-account/enterNumOrder}"
                                       method="POST">
                                     <button type="submit" class="account-driver-btns" th:text="#{driver.account.order}"></button>
                                     <input type="text" name="executeOrder" class="text-order" th::placeholder="#{driver.account.enter}"/>
