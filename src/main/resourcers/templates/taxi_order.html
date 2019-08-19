@@ -11,7 +11,7 @@
     </header>
 
     <div class="center">
-        <form method="POST" action="/taxi-Kyiv/enterOrder">
+        <form method="POST" th:action="@{/taxi-Kyiv/madeOrder}">
             <div class="order">
                 <div style="height: 60px"></div>
                 <div class="formsOrder">
@@ -27,10 +27,10 @@
 
                             <div class="labelOrder"><h1 class="order-text label-text" th:text="#{taxi.show.address}"></h1></div>
                         <div class="inputOrder">
-                            <select name="addressDeparture" class="selectAdress">
-                                <c:forEach items="${requestScope.allAddress}" var="address">
-                                    <option><c:out value="${address.street}"/> <c:out value="${address.houseNumber}"/></option>
-                                </c:forEach>
+                            <select th:name="address_departure" class="selectAdress">
+                                <tr th:each="address : ${addresses}">
+                                    <option><b th:text="${address.getStreet()}"></b> <b th:text="${address.getHouseNumber()}"></b></option>
+                                </tr>
                             </select>
                         </div>
                         <div style="clear: both;"></div>
@@ -50,10 +50,10 @@
                         <hr style="width: 97%;margin-bottom: 15px">
                         <div class="labelOrder"><h1 class="order-text label-text" th:text="#{taxi.show.address}"></h1></div>
                         <div class="inputOrder">
-                            <select name="addressArrive" class="selectAdress">
-                                <c:forEach items="${requestScope.allAddress}" var="address">
-                                    <option><c:out value="${address.street}"/> <c:out value="${address.houseNumber}"/></option>
-                                </c:forEach>
+                            <select th:name="address_arrive" class="selectAdress">
+                                <tr th:each="address : ${addresses}">
+                                    <option><b th:text="${address.getStreet()}"></b> <b th:text="${address.getHouseNumber()}"></b></option>
+                                </tr>
                             </select>
                         </div>
                         <div style="clear: both;"></div>
