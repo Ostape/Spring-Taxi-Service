@@ -7,5 +7,6 @@ import java.sql.SQLIntegrityConstraintViolationException;
 
 public interface ClientRepository extends JpaRepository<Client, Long> {
     Client findByPhoneNumberAndPassword(String phoneNumber, String password);
-    boolean findByEmail(String email);
+    Client findByEmail(String email);
+    Client findByPhoneNumber(String phoneNumber);
 }

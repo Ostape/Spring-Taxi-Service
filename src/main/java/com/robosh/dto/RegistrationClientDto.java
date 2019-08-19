@@ -2,6 +2,7 @@ package com.robosh.dto;
 
 import com.robosh.model.customAnnotations.annotations.PasswordMatches;
 import com.robosh.model.customAnnotations.annotations.ValidEmail;
+import com.robosh.model.customAnnotations.annotations.ValidPhoneNumber;
 import com.robosh.model.customAnnotations.annotations.ValidUsername;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,6 +30,7 @@ public class RegistrationClientDto {
 
     @NotNull
     @NotEmpty
+    @ValidPhoneNumber
     private String phone_number;
 
     @NotNull
