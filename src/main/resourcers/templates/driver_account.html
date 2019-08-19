@@ -53,21 +53,20 @@
                     <ul>
                         <li>
                             <strong>
-                                <p><c:out value="${sessionScope.loginedPerson.name}"/>
-                                    <c:out value="${sessionScope.loginedPerson.surname}"/></p>
+                                <p th:text="${name}"></p> <p th:text="${surname}"></p>
                             </strong>
                         </li>
 
                         <li class="liFont">
-                            <p th:text="#{driver.phone}">: <c:out value="${sessionScope.loginedPerson.phoneNumber}"/></p>
+                            <p th:text="#{driver.phone}">:  <p th:text="${phone_number}"></p></p>
                         </li>
 
                         <li class="liFont">
-                            <p th:text="#{driver.auto}">: <c:out value="${sessionScope.loginedPerson.car.carType}"/></p>
+                            <p th:text="#{driver.auto}">:  <p th:text="${auto_type}"></p></p>
                         </li>
 
                         <li class="liFont">
-                            <p th:text="#{driver.status}">: <c:out value="${sessionScope.loginedPerson.driverStatus}"/></p>
+                            <p th:text="#{driver.status}">: <p th:text="${status}"></p>
                         </li>
                     </ul>
                 </div>
