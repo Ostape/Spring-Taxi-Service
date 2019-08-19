@@ -1,17 +1,13 @@
 package com.robosh.controllers;
 
 
-import com.robosh.model.entities.Client;
 import com.robosh.model.entities.Driver;
 import com.robosh.model.entities.Order;
 import com.robosh.service.DriverService;
-import com.robosh.service.OrderService;
+import com.robosh.service.OrderShowPagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,11 +29,11 @@ public class DriverAccountController {
     private final DriverService driverService;
 
     @Autowired
-    private final OrderService orderService;
+    private final OrderShowPagService orderShowPagService;
 
-    public DriverAccountController(DriverService driverService, OrderService orderService) {
+    public DriverAccountController(DriverService driverService, OrderShowPagService orderShowPagService) {
         this.driverService = driverService;
-        this.orderService = orderService;
+        this.orderShowPagService = orderShowPagService;
     }
 
 
@@ -59,7 +55,7 @@ public class DriverAccountController {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(5);
 
-        Page<Order> orderPage = orderService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
+        Page<Order> orderPage = orderShowPagService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
 
         model.addAttribute("orderPage", orderPage);
 

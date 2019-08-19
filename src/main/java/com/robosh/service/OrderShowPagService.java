@@ -13,11 +13,11 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-public class OrderService {
+public class OrderShowPagService {
     @Autowired
     private final OrderRepository orderRepository;
 
-    public OrderService(OrderRepository orderRepository) {
+    public OrderShowPagService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
 
@@ -46,5 +46,6 @@ public class OrderService {
 
         return orderPage;
     }
+
 
 }

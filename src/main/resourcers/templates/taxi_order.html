@@ -11,7 +11,7 @@
     </header>
 
     <div class="center">
-        <form method="POST" th:action="@{/taxi-Kyiv/madeOrder}">
+        <form method="POST" th:action="@{/taxi-kyiv/client-account/madeOrder}">
             <div class="order">
                 <div style="height: 60px"></div>
                 <div class="formsOrder">
@@ -22,7 +22,7 @@
 
                         <hr style="width: 97%; margin-bottom: 15px">
 <!--                        <c:if test="${param.sameAddress == true}">-->
-                            <p class="errorsM" th:text="#{taxi.order.choose.error}"></p>
+<!--                            <p class="errorsM" th:text="#{taxi.order.choose.error}"></p>-->
 <!--                        </c :if>   -->
 
                             <div class="labelOrder"><h1 class="order-text label-text" th:text="#{taxi.show.address}"></h1></div>
@@ -73,9 +73,9 @@
                         <div class="inputOrder" style="padding: 10px;">
 
                             <div>
-                                <c:if test="${param.noSuitableCarType == true}">
-                                    <p class="errorsM" th:text="#{taxi.order.no.car}"></p>
-                                </c:if>
+<!--                                <c:if test="${param.noSuitableCarType == true}">-->
+<!--                                    <p class="errorsM" th:text="#{taxi.order.no.car}"></p>-->
+<!--                                </c:if>-->
                                 <div class="cc-selector">
                                     <div class="radbox">
                                         <input id="car" type="radio" name="carType" value="Light" checked="true"/>

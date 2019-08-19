@@ -65,14 +65,12 @@
 
             <nav aria-label="...">
                 <ul class="pagination pagination-sm justify-content-center" >
-
-                        <li class="page-item" th:if="${orderPage.totalPages > 0}"
-                            th:each="pageNumber : ${pageNumbers}">
-                            <a class="page-link" th:href="@{/taxi-kyiv/driver-account/show-orders(size=${orderPage.size}, page=${pageNumber})}"
-                               th:text="${pageNumber}"
-                               th:class="${pageNumber==orderPage.number + 1} ? active"></a>
-                        </li>
-
+                    <li class="page-item" th:if="${orderPage.totalPages > 0}"
+                        th:each="pageNumber : ${pageNumbers}">
+                        <a class="page-link" th:href="@{/taxi-kyiv/driver-account/show-orders(size=${orderPage.size}, page=${pageNumber})}"
+                           th:text="${pageNumber}"
+                           th:class="${pageNumber==orderPage.number + 1} ? active"></a>
+                    </li>
                 </ul>
             </nav>
         </div>

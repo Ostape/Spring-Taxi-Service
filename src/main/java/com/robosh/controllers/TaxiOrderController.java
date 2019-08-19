@@ -1,7 +1,9 @@
 package com.robosh.controllers;
 
+import com.robosh.dto.OrderDto;
 import com.robosh.service.AddressService;
-import com.robosh.service.ClientService;
+import com.robosh.service.DriverService;
+import com.robosh.service.OrderShowPagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,15 +11,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 @Controller
 @RequestMapping("/taxi-kyiv/client-account")
 public class TaxiOrderController {
 
-    @Autowired
-    private final AddressService addressService;
 
-    public TaxiOrderController(AddressService addressService) {
+    private final AddressService addressService;
+    private final DriverService driverService;
+
+    @Autowired
+    public TaxiOrderController(AddressService addressService, DriverService driverService) {
         this.addressService = addressService;
+        this.driverService = driverService;
     }
 
 
@@ -28,7 +37,14 @@ public class TaxiOrderController {
     }
 
     @PostMapping("/madeOrder")
-    public String madeOrder(){
-        return "order_status";
+    public String madeOrder(@NotNull @Valid OrderDto dto) {
+
+        @NotNull @NotEmpty String carType = dto.getCarType();
+
+        if (driverService.checkIfDriverIsFree(carType)) {
+
+            return "order_status";
+        }
+        return "redirect:/taxi-kyiv/client-account/making-order";
     }
 }

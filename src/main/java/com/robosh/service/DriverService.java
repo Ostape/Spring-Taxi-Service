@@ -1,8 +1,8 @@
 package com.robosh.service;
 
 import com.robosh.model.entities.Driver;
+import com.robosh.model.enums.DriverStatus;
 import com.robosh.repository.DriverRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,5 +15,13 @@ public class DriverService {
 
     public Driver getDriverByPhoneNumber(String phoneNumber) {
         return driverRepository.findByPhoneNumber(phoneNumber);
+    }
+
+    public Driver getDriverByDriverStatusAndCarType(String carType, DriverStatus driverStatus){
+        return driverRepository.findByDriverStatusAndCarType(carType, driverStatus);
+    }
+
+    public boolean checkIfDriverIsFree(String carType) {
+        return driverRepository.findByDriverStatusAndCarType(carType, DriverStatus.free) != null;
     }
 }
