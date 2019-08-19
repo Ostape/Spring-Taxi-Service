@@ -24,11 +24,10 @@ import java.util.Set;
 public class LoginController {
 
     @GetMapping("/login")
-    public String loginPage(HttpServletRequest request)
+    public String loginPage()
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Collection<? extends GrantedAuthority> authorities = new HashSet<>(auth.getAuthorities());
-
         boolean isClient = authorities.contains(new SimpleGrantedAuthority("CLIENT"));
         boolean isDriver = authorities.contains(new SimpleGrantedAuthority("DRIVER"));
 
@@ -40,5 +39,4 @@ public class LoginController {
         }
         return "login";
     }
-
 }

@@ -16,6 +16,10 @@ public class ClientService {
         this.clientRepository = clientRepository;
     }
 
+    public Client getClientByPhoneNumber(String phoneNumber){
+        return clientRepository.findByPhoneNumber(phoneNumber);
+    }
+
     public Client registerNewClient(RegistrationClientDto clientDto) throws EmailIsAlreadyTaken, PhoneNumberIsAlreadyTaken {
         if (isEmailExists(clientDto.getEmail())) {
             throw new EmailIsAlreadyTaken(
