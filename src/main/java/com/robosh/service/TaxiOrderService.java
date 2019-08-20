@@ -26,9 +26,10 @@ public class TaxiOrderService {
     public Order makeOrder(OrderDto orderDto){
         Driver driver = driverService.getDriverByDriverStatusAndCarType(orderDto.getCarType(), DriverStatus.free);
 
-
-        Order order = Order.builder()
-                .orderStatus(OrderStatus.EXECUTING)
-                .client()
+//
+//        Order order = Order.builder()
+//                .orderStatus(OrderStatus.EXECUTING)
+//                .client()
+                return null;
     }
 }

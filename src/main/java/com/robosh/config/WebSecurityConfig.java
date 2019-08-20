@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .formLogin()
                 .loginPage("/taxi-kyiv/login")
-                .defaultSuccessUrl("/taxi-kyiv", true)
+                .defaultSuccessUrl("/default", true)
                 .failureUrl("/taxi-kyiv/login?error=true")
                 .permitAll()
                     .and()
