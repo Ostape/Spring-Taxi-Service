@@ -1,6 +1,7 @@
 package com.robosh.controllers;
 
 import com.robosh.dto.RegistrationClientDto;
+import com.robosh.model.customExceptions.EmailAndPhoneNumberIsAlreadyTaken;
 import com.robosh.model.customExceptions.EmailIsAlreadyTaken;
 import com.robosh.model.customExceptions.PhoneNumberIsAlreadyTaken;
 import com.robosh.model.entities.Client;
@@ -28,7 +29,7 @@ public class RegisterController {
     }
 
     @GetMapping
-    public String registerPage(Model model){
+    public String registerPage(Model model) {
         RegistrationClientDto clientDto = new RegistrationClientDto();
         model.addAttribute("client", clientDto);
         return "register_client";
@@ -36,21 +37,18 @@ public class RegisterController {
 
     @PostMapping
     public ModelAndView registerClient(@ModelAttribute("client") @Valid RegistrationClientDto dto,
-                                       BindingResult result, WebRequest request, Errors errors){
+                                       BindingResult result, WebRequest request, Errors errors) {
         Client registered = new Client();
         if (!result.hasErrors()) {
             System.out.println("creating user");
             registered = createUserAccount(dto, result);
         }
-        if (registered == null) {
-            System.out.println("email");
-            result.rejectValue("email", "message.regError");
-        }
+//        if (registered == null){
+//            result.rejectValue("email", "register.email.duplicated");
+//        }
         if (result.hasErrors()) {
-            System.out.println("here");
             return new ModelAndView("register_client", "client", dto);
-        }
-        else {
+        } else {
             return new ModelAndView("login", "client", dto);
         }
     }
@@ -60,9 +58,12 @@ public class RegisterController {
         try {
             registered = clientService.registerNewClient(accountDto);
         } catch (EmailIsAlreadyTaken e) {
-            return null;
-        } catch (PhoneNumberIsAlreadyTaken e){
-            return null;
+            result.rejectValue("email", "register.email.duplicated");
+        } catch (PhoneNumberIsAlreadyTaken e) {
+            result.rejectValue("phone_number", "register.phone.number.duplicated");
+        } catch (EmailAndPhoneNumberIsAlreadyTaken e) {
+            result.rejectValue("email", "register.email.duplicated");
+            result.rejectValue("phone_number", "register.phone.number.duplicated");
         }
         return registered;
     }

@@ -1,6 +1,7 @@
 package com.robosh.service;
 
 import com.robosh.dto.RegistrationClientDto;
+import com.robosh.model.customExceptions.EmailAndPhoneNumberIsAlreadyTaken;
 import com.robosh.model.customExceptions.EmailIsAlreadyTaken;
 import com.robosh.model.customExceptions.PhoneNumberIsAlreadyTaken;
 import com.robosh.model.entities.Client;
@@ -21,6 +22,17 @@ public class ClientService {
     }
 
     public Client registerNewClient(RegistrationClientDto clientDto) throws EmailIsAlreadyTaken, PhoneNumberIsAlreadyTaken {
+        isNotDuplicatedData(clientDto);
+        Client client = convertDtoClientToClientEntity(clientDto);
+        return clientRepository.save(client);
+    }
+
+    private void isNotDuplicatedData(RegistrationClientDto clientDto) {
+        if (isEmailExists(clientDto.getEmail()) && isPhoneNumberExists(clientDto.getPhone_number())) {
+            throw new EmailAndPhoneNumberIsAlreadyTaken("Phone number and email is already taken:" +
+                    clientDto.getPhone_number() + ", " + clientDto.getEmail());
+        }
+
         if (isEmailExists(clientDto.getEmail())) {
             throw new EmailIsAlreadyTaken(
                     "There is an account with that email address:"  + clientDto.getEmail());
@@ -29,8 +41,6 @@ public class ClientService {
             throw new PhoneNumberIsAlreadyTaken(
                     "There is an account with that phone number:" + clientDto.getPhone_number());
         }
-        Client client = convertDtoClientToClientEntity(clientDto);
-        return clientRepository.save(client);
     }
 
     private Client convertDtoClientToClientEntity(RegistrationClientDto dto) {
