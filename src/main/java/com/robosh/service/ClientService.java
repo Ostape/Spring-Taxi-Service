@@ -41,7 +41,6 @@ public class ClientService {
             throw new EmailAndPhoneNumberIsAlreadyTaken("Phone number and email is already taken:" +
                     clientDto.getPhone_number() + ", " + clientDto.getEmail());
         }
-
         if (isEmailExists(clientDto.getEmail())) {
             throw new EmailIsAlreadyTaken(
                     "There is an account with that email address:" + clientDto.getEmail());

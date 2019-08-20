@@ -46,7 +46,7 @@ public class RegisterController {
         if (result.hasErrors()) {
             return new ModelAndView("register_client", "client", dto);
         }
-        return new ModelAndView("login", "client", dto);
+        return new ModelAndView("redirect:/login");
     }
 
     private Client createUserAccount(RegistrationClientDto accountDto, BindingResult result) {
