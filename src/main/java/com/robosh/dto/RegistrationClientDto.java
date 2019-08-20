@@ -16,7 +16,6 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@PasswordMatches
 public class RegistrationClientDto {
     @NotNull
     @NotEmpty
@@ -40,9 +39,11 @@ public class RegistrationClientDto {
 
     @NotNull
     @NotEmpty
+    @PasswordMatches(message = "{register.password.error}")
     private String password;
 
     @NotNull
     @NotEmpty
+    @PasswordMatches(message = "{register.password.error}")
     private String password_repeat;
 }

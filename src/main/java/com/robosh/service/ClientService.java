@@ -3,6 +3,7 @@ package com.robosh.service;
 import com.robosh.dto.RegistrationClientDto;
 import com.robosh.model.customExceptions.EmailAndPhoneNumberIsAlreadyTaken;
 import com.robosh.model.customExceptions.EmailIsAlreadyTaken;
+import com.robosh.model.customExceptions.PasswordNotEquals;
 import com.robosh.model.customExceptions.PhoneNumberIsAlreadyTaken;
 import com.robosh.model.entities.Client;
 import com.robosh.model.enums.Role;
@@ -17,14 +18,22 @@ public class ClientService {
         this.clientRepository = clientRepository;
     }
 
-    public Client getClientByPhoneNumber(String phoneNumber){
+    public Client getClientByPhoneNumber(String phoneNumber) {
         return clientRepository.findByPhoneNumber(phoneNumber);
     }
 
     public Client registerNewClient(RegistrationClientDto clientDto) throws EmailIsAlreadyTaken, PhoneNumberIsAlreadyTaken {
+        isPasswordEqual(clientDto);
         isNotDuplicatedData(clientDto);
         Client client = convertDtoClientToClientEntity(clientDto);
         return clientRepository.save(client);
+    }
+
+    private void isPasswordEqual(RegistrationClientDto clientDto) {
+        if (!clientDto.getPassword().equals(clientDto.getPassword_repeat())){
+            throw new PasswordNotEquals("Password not equals: " + clientDto.getPassword() + " and " +
+                    clientDto.getPassword_repeat());
+        }
     }
 
     private void isNotDuplicatedData(RegistrationClientDto clientDto) {
@@ -35,7 +44,7 @@ public class ClientService {
 
         if (isEmailExists(clientDto.getEmail())) {
             throw new EmailIsAlreadyTaken(
-                    "There is an account with that email address:"  + clientDto.getEmail());
+                    "There is an account with that email address:" + clientDto.getEmail());
         }
         if (isPhoneNumberExists(clientDto.getPhone_number())) {
             throw new PhoneNumberIsAlreadyTaken(

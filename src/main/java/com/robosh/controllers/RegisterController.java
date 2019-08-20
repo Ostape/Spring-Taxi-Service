@@ -3,6 +3,7 @@ package com.robosh.controllers;
 import com.robosh.dto.RegistrationClientDto;
 import com.robosh.model.customExceptions.EmailAndPhoneNumberIsAlreadyTaken;
 import com.robosh.model.customExceptions.EmailIsAlreadyTaken;
+import com.robosh.model.customExceptions.PasswordNotEquals;
 import com.robosh.model.customExceptions.PhoneNumberIsAlreadyTaken;
 import com.robosh.model.entities.Client;
 import com.robosh.service.ClientService;
@@ -59,6 +60,8 @@ public class RegisterController {
         } catch (EmailAndPhoneNumberIsAlreadyTaken e) {
             result.rejectValue("email", "register.email.duplicated");
             result.rejectValue("phone_number", "register.phone.number.duplicated");
+        } catch (PasswordNotEquals e) {
+            result.rejectValue("password", "register.password.error");
         }
         return registered;
     }

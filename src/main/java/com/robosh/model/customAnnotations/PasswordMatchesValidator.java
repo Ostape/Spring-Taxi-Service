@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PasswordMatchesValidator
-        implements ConstraintValidator<PasswordMatches, Object> {
+        implements ConstraintValidator<PasswordMatches, String> {
 
     private Pattern pattern;
     private Matcher matcher;
@@ -20,12 +20,8 @@ public class PasswordMatchesValidator
     }
 
     @Override
-    public boolean isValid(Object obj, ConstraintValidatorContext context) {
-        RegistrationClientDto clientDto = (RegistrationClientDto) obj;
-        if (clientDto.getPassword().equals(clientDto.getPassword_repeat())) {
-            return checkInputPassword(clientDto.getPassword());
-        }
-        return false;
+    public boolean isValid(String password, ConstraintValidatorContext context) {
+        return checkInputPassword(password);
     }
 
     private boolean checkInputPassword(String password) {
