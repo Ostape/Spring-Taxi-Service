@@ -44,8 +44,6 @@ public class RegisterController {
         }
         if (registered == null) {
             System.out.println("email");
-
-
             result.rejectValue("email", "message.regError");
         }
         if (result.hasErrors()) {

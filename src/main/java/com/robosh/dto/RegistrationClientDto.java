@@ -20,22 +20,22 @@ import javax.validation.constraints.NotNull;
 public class RegistrationClientDto {
     @NotNull
     @NotEmpty
-    @ValidUsername
+    @ValidUsername(message = "{register.name.error}")
     private String name;
 
     @NotNull
     @NotEmpty
-    @ValidUsername
+    @ValidUsername(message = "{register.name.error}")
     private String surname;
 
     @NotNull
     @NotEmpty
-    @ValidPhoneNumber
+    @ValidPhoneNumber(message = "{register.phone.number.error}")
     private String phone_number;
 
     @NotNull
     @NotEmpty
-    @ValidEmail
+    @ValidEmail(message = "{register.email.wrong.regex}")
     private String email;
 
     @NotNull

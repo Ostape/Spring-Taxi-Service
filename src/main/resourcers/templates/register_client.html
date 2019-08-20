@@ -19,38 +19,31 @@
                     <hr>
 
                     <label><b th:text="#{register.name}"></b></label>
-<!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-                    <p class="errorsM" th:each="error : ${#fields.errors('name')}" th:text="${error}"></p>
-                    <input type="text" th:placeholder="#{register.name}" name="name" required>
+                    <p class="errorsM" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                    <input type="text" th:placeholder="#{register.name}" th:field="*{name}" required>
+
                     <label><b th:text="#{register.surname}"></b></label>
-
-
-                    <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-                    <p class="errorsM" th:each="error : ${#fields.errors('surname')}"th:text="${error}">Validation error</p>
-                    <input type="text" th:placeholder="#{register.surname}" name="surname" required>
+                     <p class="errorsM" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" >Validation error</p>
+                    <input type="text" th:placeholder="#{register.surname}" th:field="*{surname}" required>
 
                     <label><b th:text="#{register.phone.number}"></b></label>
-                    <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-                    <p class="errorsM" th:each="error : ${#fields.errors('phone_number')}" th:text="${error}">Validation error</p>
-                    <input type="text" th:placeholder="#{register.phone.number}" name="phone_number" required>
+                    <p class="errorsM" th:if="${#fields.hasErrors('phone_number')}" th:errors="*{phone_number}">Validation error</p>
+                    <input type="text" th:placeholder="#{register.phone.number}" th:field="*{phone_number}" required>
                     <br>
                     <br>
                     <hr>
 
                     <label><b th:text="#{register.email}"></b></label>
-                    <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-                    <p class="errorsM" th:each="error : ${#fields.errors('email')}" th:text="${error}">Validation error</p>
-                    <input type="email" th:placeholder="#{register.email}" name="email" required>
+                    <p class="errorsM" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Validation error</p>
+                    <input type="email" th:placeholder="#{register.email}" th:field="*{email}" required>
 
 
                     <label><b th:text="#{register.password}"></b></label>
-
-                    <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-                    <p class="errorsM" th:each="error : ${#fields.errors('password')}" th:text="${error}">Validation error</p>
-                    <input type="password" th:placeholder="#{register.enter.password}" name="password" required>
+                    <p class="errorsM" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Validation error</p>
+                    <input type="password" th:placeholder="#{register.enter.password}" th:field="*{password}" required>
 
                     <label><b th:text="#{register.repeat.password}"></b></label>
-                    <input type="password" th:placeholder="#{register.repeat.password}" name="password_repeat" required>
+                    <input type="password" th:placeholder="#{register.repeat.password}" th:field="*{password_repeat}" required>
                     <hr>
 
                     <p th:text="#{register.agree.creating}"></p><a href="#" th:text="#{register.terms.privacy}"></a>.
