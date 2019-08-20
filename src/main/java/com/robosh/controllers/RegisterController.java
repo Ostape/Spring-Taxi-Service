@@ -38,19 +38,14 @@ public class RegisterController {
     @PostMapping
     public ModelAndView registerClient(@ModelAttribute("client") @Valid RegistrationClientDto dto,
                                        BindingResult result, WebRequest request, Errors errors) {
-        Client registered = new Client();
         if (!result.hasErrors()) {
-            System.out.println("creating user");
-            registered = createUserAccount(dto, result);
+            createUserAccount(dto, result);
         }
-//        if (registered == null){
-//            result.rejectValue("email", "register.email.duplicated");
-//        }
+
         if (result.hasErrors()) {
             return new ModelAndView("register_client", "client", dto);
-        } else {
-            return new ModelAndView("login", "client", dto);
         }
+        return new ModelAndView("login", "client", dto);
     }
 
     private Client createUserAccount(RegistrationClientDto accountDto, BindingResult result) {
