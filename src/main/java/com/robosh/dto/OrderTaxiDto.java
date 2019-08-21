@@ -14,15 +14,13 @@ import javax.validation.constraints.NotNull;
 @Builder
 public class OrderTaxiDto {
     @NotNull
-    @NotEmpty
     private Integer id_address_departure;
 
     @NotNull
-    @NotEmpty
     private Integer id_address_arrive;
 
     @NotNull
-    @NotEmpty
+    @NotEmpty(message = "{order.taxi.select.error}")
     private String carType;
 
     private String coupon;

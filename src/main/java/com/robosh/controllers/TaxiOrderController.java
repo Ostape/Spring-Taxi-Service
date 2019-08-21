@@ -6,7 +6,9 @@ import com.robosh.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -38,16 +40,22 @@ public class TaxiOrderController {
     }
 
     @PostMapping("/makeOrder")
-    public String madeOrder(@NotNull OrderTaxiDto dto) {
-
-        @NotNull @NotEmpty String carType = dto.getCarType();
+    public String madeOrder(@ModelAttribute("client") @NotNull @Valid OrderTaxiDto dto, BindingResult result, Model model) {
+        System.out.println("tytb");
+        if (result.hasErrors()){
+            System.out.println("here");
+            model.addAttribute("order", dto);
+            model.addAttribute("addresses", new ArrayList<>(addressService.getAllAddresses()));
+            return "taxi_order";
+        }
+        String carType = dto.getCarType();
 
         System.out.println(dto);
 
         if (driverService.checkIfDriverIsFree(carType)) {
-
+            //todo redirect
             return "order_status";
         }
-        return "redirect:/taxi-kyiv/client-account/making-order";
+        return "taxi_order";
     }
 }
