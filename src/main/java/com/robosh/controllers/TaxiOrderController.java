@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/taxi-kyiv/client-account")
@@ -31,13 +32,13 @@ public class TaxiOrderController {
 
     @GetMapping("/making-order")
     public String makingTaxiOrder(Model model){
-        model.addAttribute("addresses", addressService.getAllAddresses());
         model.addAttribute("order", new OrderTaxiDto());
+        model.addAttribute("addresses", new ArrayList<>(addressService.getAllAddresses()));
         return "taxi_order";
     }
 
     @PostMapping("/makeOrder")
-    public String madeOrder(@NotNull @Valid OrderTaxiDto dto) {
+    public String madeOrder(@NotNull OrderTaxiDto dto) {
 
         @NotNull @NotEmpty String carType = dto.getCarType();
 

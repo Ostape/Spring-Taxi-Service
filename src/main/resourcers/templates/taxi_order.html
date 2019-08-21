@@ -21,18 +21,24 @@
                         </div>
 
                         <hr style="width: 97%; margin-bottom: 15px">
-<!--                        <c:if test="${param.sameAddress == true}">-->
-<!--                            <p class="errorsM" th:text="#{taxi.order.choose.error}"></p>-->
-<!--                        </c :if>   -->
+                        <!--                        <c:if test="${param.sameAddress == true}">-->
+                        <!--                            <p class="errorsM" th:text="#{taxi.order.choose.error}"></p>-->
+                        <!--                        </c :if>   -->
 
-                            <div class="labelOrder"><h1 class="order-text label-text" th:text="#{taxi.show.address}"></h1></div>
+                        <div class="labelOrder"><h1 class="order-text label-text" th:text="#{taxi.show.address}"></h1>
+                        </div>
+
+
                         <div class="inputOrder">
-                            <select th:name="${address_departure}" class="selectAdress">
-                                <tr th:each="address : ${addresses}">
-                                    <option><b th:text="${address.getStreet()}"></b> <b th:text="${address.getHouseNumber()}"></b></option>
-                                </tr>
+                            <select th:field="*{address_departure}" class="selectAdress">
+                                <option th:each="address : ${addresses}" th:value="${address.getIdAddress()}">
+                                    <b th:text="${address.getStreet()}"></b> <b
+                                        th:text="${address.getHouseNumber()}"></b>
+                                </option>
                             </select>
                         </div>
+
+
                         <div style="clear: both;"></div>
                     </div>
                 </div>
@@ -44,16 +50,18 @@
                 <div class="formsOrder">
                     <div class="container">
                         <div style="width: 25%; border-bottom: 4px solid #fed402">
-                            <h1 class="order-text"  th:text="#{taxi.order.arrive}"></h1>
+                            <h1 class="order-text" th:text="#{taxi.order.arrive}"></h1>
                         </div>
 
                         <hr style="width: 97%;margin-bottom: 15px">
-                        <div class="labelOrder"><h1 class="order-text label-text" th:text="#{taxi.show.address}"></h1></div>
+                        <div class="labelOrder"><h1 class="order-text label-text" th:text="#{taxi.show.address}"></h1>
+                        </div>
                         <div class="inputOrder">
-                            <select th:name="${address_arrive}" class="selectAdress">
-                                <tr th:each="address : ${addresses}">
-                                    <option><b th:text="${address.getStreet()}"></b> <b th:text="${address.getHouseNumber()}"></b></option>
-                                </tr>
+                            <select th:field="*{address_arrive}" class="selectAdress">
+                                <option th:each="address : ${addresses}" th:value="${address.getIdAddress()}">
+                                    <b th:text="${address.getStreet()}"></b> <b
+                                        th:text="${address.getHouseNumber()}"></b>
+                                </option>
                             </select>
                         </div>
                         <div style="clear: both;"></div>
@@ -69,16 +77,18 @@
                             <h1 class="order-text" th:text="#{taxi.order.reqir}"></h1>
                         </div>
                         <hr style="width: 97%; margin-bottom: 15px">
-                        <div class="labelOrder"><h1 class="order-text label-text" th:text="#{taxi.order.auto.type}"></h1></div>
+                        <div class="labelOrder"><h1 class="order-text label-text"
+                                                    th:text="#{taxi.order.auto.type}"></h1></div>
                         <div class="inputOrder" style="padding: 10px;">
 
                             <div>
-<!--                                <c:if test="${param.noSuitableCarType == true}">-->
-<!--                                    <p class="errorsM" th:text="#{taxi.order.no.car}"></p>-->
-<!--                                </c:if>-->
+                                <!--                                <c:if test="${param.noSuitableCarType == true}">-->
+                                <!--                                    <p class="errorsM" th:text="#{taxi.order.no.car}"></p>-->
+                                <!--                                </c:if>-->
                                 <div class="cc-selector">
                                     <div class="radbox">
-                                        <input id="car" type="radio" th:field="*{carType}" value="Light" th:checked="${true} ? 'checked'"/>
+                                        <input id="car" type="radio" th:field="*{carType}" value="Light"
+                                               th:checked="${true} ? 'checked'"/>
                                         <label class="drinkcard-cc car" for="car"></label>
                                     </div>
 
@@ -112,9 +122,11 @@
                         </div>
 
                         <hr style="width: 97%;margin-bottom: 15px">
-                        <div class="labelOrder"><h1 class="order-text label-text" th:text="#{taxi.order.coupon.name}"></h1></div>
+                        <div class="labelOrder"><h1 class="order-text label-text"
+                                                    th:text="#{taxi.order.coupon.name}"></h1></div>
                         <div class="inputOrder">
-                            <input type="text" th:placeholder="#{taxi.order.coupon}" th:field="*{coupon}" class="inputO">
+                            <input type="text" th:placeholder="#{taxi.order.coupon}" th:field="*{coupon}"
+                                   class="inputO">
                         </div>
                         <div style="clear: both;"></div>
                     </div>
@@ -125,7 +137,7 @@
                 <div style="height: 10px"></div>
 
                 <div class="container" style="display: flex;">
-                    <button type="submit" class="buttonSub"  th:text="#{taxi.make.order.client}"></button>
+                    <button type="submit" class="buttonSub" th:text="#{taxi.make.order.client}"></button>
                 </div>
 
                 <div style="height: 100px"></div>
