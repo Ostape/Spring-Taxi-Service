@@ -75,9 +75,11 @@ public class DriverAccountController {
 
         if (executeOrderDto != null && driver.getDriverStatus().equals(DriverStatus.booked)){
             try {
-                taxiOrderService.executeOrder(driver.getPersonId(), Long.valueOf(executeOrderDto.getNumOfOrder()));
+                taxiOrderService.performOrder(driver.getPersonId(), Long.valueOf(executeOrderDto.getNumOfOrder()));
             }catch (NoSuchDriverOrderException e){
-
+                result.rejectValue("numOfOrder", "driver.account.mess.error.2");
+                addDriverInfoAttribute(model, principal, executeOrderDto);
+                return "driver_account";
             }
             return "redirect:/taxi-kyiv/driver-account";
         }

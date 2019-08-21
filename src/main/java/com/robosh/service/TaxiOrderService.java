@@ -65,7 +65,7 @@ public class TaxiOrderService {
     }
 
     @Transactional
-    public void executeOrder(Long idDriver, Long idOrder) {
+    public void performOrder(Long idDriver, Long idOrder) {
         Order order = orderRepository.findByIdOrderAndOrderStatus(idOrder, OrderStatus.EXECUTING);
         if (order == null) {
             throw new NoSuchDriverOrderException();
