@@ -7,7 +7,7 @@ import javax.validation.ConstraintValidatorContext;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DriverMakingOrderValidator implements ConstraintValidator<ValidOrderInput, String> {
+public class ExecuteDriverValidator implements ConstraintValidator<ValidOrderInput, String> {
     private Pattern pattern;
     private Matcher matcher;
     private static final String CORRECT_INPUT = "[\\D]";

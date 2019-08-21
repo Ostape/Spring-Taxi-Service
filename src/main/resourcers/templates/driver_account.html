@@ -38,9 +38,9 @@
 <!--                            </c:if>-->
                             <div th:if="${#strings.equals(status, 'booked')}">
                                 <form class="make-order" th:action="@{/taxi-kyiv/driver-account/enterNumOrder}"
-                                      method="POST">
+                                     th:object="${execute_order}" method="POST">
                                     <button type="submit" class="account-driver-btns" th:text="#{driver.account.order}"></button>
-                                    <input type="text" name="executeOrder" class="text-order" th::placeholder="#{driver.account.enter}"/>
+                                    <input type="text" th:field="*{executeOrder}" class="text-order" th::placeholder="#{driver.account.enter}"/>
                                 </form>
                             </div>
                         </div>

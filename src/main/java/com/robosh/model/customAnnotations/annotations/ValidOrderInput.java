@@ -1,6 +1,6 @@
 package com.robosh.model.customAnnotations.annotations;
 
-import com.robosh.model.customAnnotations.DriverMakingOrderValidator;
+import com.robosh.model.customAnnotations.ExecuteDriverValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -13,7 +13,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({TYPE, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = DriverMakingOrderValidator.class)
+@Constraint(validatedBy = ExecuteDriverValidator.class)
 @Documented
 public @interface ValidOrderInput {
     String message() default "Invalid order input";
