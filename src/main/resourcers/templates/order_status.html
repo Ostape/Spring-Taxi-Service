@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="commonParts/header :: copy"></head>
-<link rel="stylesheet" type="text/css" href="/css/bootstrap-grid.css">
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-grid.css}">
 <body class="home blog">
 
 <div id="wrapper">
@@ -18,33 +18,7 @@
 
     <div class="center">
         <div class="nazar" >
-            <div class="row">
-                <div class="col-lg-6">
-                    <img src="/img/clientPhoto.png" style="width: 65% ">
-                </div>
-
-                <div class="col-lg-6">
-                    <strong>
-                        <p class="order-text-about">
-                        <p th:text="#{show.order.dear}"></p>
-                        <c:out value="${sessionScope.loginedPerson.name}"/>
-                        <c:out value="${sessionScope.loginedPerson.surname}"/>,
-                        <p th:text="#{show.order.your.order}"></p>
-                        </p>
-                    </strong>
-                    <p class="order-text-about">
-                    <p th:text="#{show.order.driver}"></p><c:out value="${requestScope.driverName}"/>.
-                    <p th:text="#{show.order.phone.number}"></p> +<c:out value="${requestScope.phoneNumber}"/>.</p>
-                    <p class="order-text-about"><p th:text="#{show.order.thanks}"></p></p>
-                    <p class="order-text-about"><p th:text="#{show.order.costs}"></p> <c:out value="${requestScope.priceVoyage}"/> <p th:text="#{show.order.money}"></p></p>
-                    <p class="order-text-about"><p th:text="#{show.order.wait}"></p> <c:out value="${requestScope.timeWait}"/> <p th:text="#{show.order.min}"></p></p>
-                </div>
-            </div>
-            <div>
-                <form class="dr" action="${pageContext.request.contextPath}/taxi-Kyiv/homePage">
-                    <button type="submit" class="logoutDriver"><p th:text="#{show.order.home}"></p></button>
-                </form>
-            </div>
+            <span class="center">Order sent successfully!!!</span>
         </div>
     </div>
 </div>

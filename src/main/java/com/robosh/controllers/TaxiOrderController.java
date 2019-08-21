@@ -42,10 +42,6 @@ public class TaxiOrderController {
         return "taxi_order";
     }
 
-    @GetMapping("/order-status")
-    public String showOrderInfo(){
-        return "order_status";
-    }
 
     @PostMapping("/makeOrder")
     public String madeOrder(@ModelAttribute("order") @NotNull @Valid OrderTaxiDto dto,
@@ -63,7 +59,7 @@ public class TaxiOrderController {
             return "taxi_order";
         }
 
-        return "redirect:/taxi-kyiv/client-account/order-status";
+        return "order_status";
     }
 
     private void setAttributes(Model model, OrderTaxiDto dto){
@@ -96,5 +92,4 @@ public class TaxiOrderController {
         }
         return true;
     }
-
 }
