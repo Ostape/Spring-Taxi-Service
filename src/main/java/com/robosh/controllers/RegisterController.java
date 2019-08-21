@@ -42,7 +42,6 @@ public class RegisterController {
         if (!result.hasErrors()) {
             createUserAccount(dto, result);
         }
-
         if (result.hasErrors()) {
             return new ModelAndView("register_client", "client", dto);
         }

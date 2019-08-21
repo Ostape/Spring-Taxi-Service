@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Map;
-
 @Service
 public class TaxiOrderService {
 
@@ -28,7 +26,7 @@ public class TaxiOrderService {
     }
 
     @Transactional
-    public Order makeOrder(OrderTaxiDto orderDto, Client client){
+    public Order makeOrder(OrderTaxiDto orderDto, Client client) {
         Driver driver = driverService.getDriverIfFree(orderDto.getCarType());
         driver.setDriverStatus(DriverStatus.booked);
 
@@ -53,12 +51,12 @@ public class TaxiOrderService {
     }
 
     private int getPriceWithoutDiscount() {
-        return (int) (Math.random() * 150);
+        return (int) (Math.random() * 1500);
     }
 
     private int getPriceWithCoupon(int price, Coupon coupon) {
         Integer discountPercent = couponService.getDiscount(coupon);
-        return (int) (price - price * ((double)discountPercent / 100.0));
+        return (int) (price - price * (double) discountPercent / 100);
     }
 
 }

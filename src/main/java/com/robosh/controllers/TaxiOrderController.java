@@ -1,6 +1,7 @@
 package com.robosh.controllers;
 
 import com.robosh.dto.OrderTaxiDto;
+import com.robosh.model.customExceptions.NoDriverAvailableException;
 import com.robosh.model.entities.Client;
 import com.robosh.service.AddressService;
 import com.robosh.service.ClientService;
@@ -43,24 +44,37 @@ public class TaxiOrderController {
     }
 
     @PostMapping("/makeOrder")
-    public String madeOrder(@ModelAttribute("client") @NotNull @Valid OrderTaxiDto dto,
+    public String madeOrder(@ModelAttribute("order") @NotNull @Valid OrderTaxiDto dto,
                             BindingResult result, Model model, Principal principal) {
         Client client = clientService.getClientByPhoneNumber(principal.getName());
 
-
         if (result.hasErrors()){
+            System.out.println("result error");
             model.addAttribute("order", dto);
             model.addAttribute("addresses", new ArrayList<>(addressService.getAllAddresses()));
             return "taxi_order";
         }
 
 
-
-        orderService.makeOrder(dto, client);
-        if (true){
-            return "order_status";
+        try {
+            orderService.makeOrder(dto, client);
+        }catch (NoDriverAvailableException e){
+            System.out.println("carType errprs");
+            result.rejectValue("carType", "taxi.order.no.car");
+            model.addAttribute("order", dto);
+            model.addAttribute("addresses", new ArrayList<>(addressService.getAllAddresses()));
+            return "taxi_order";
         }
-        //todo addAtribute
-        return "taxi_order";
+
+        return "redirect:/taxi-kyiv/client-account/order-status";
+    }
+
+    @GetMapping("order-status")
+    public String showOrderInfo(){
+        return "order_status";
+    }
+
+    private boolean isEqualAddresses(OrderTaxiDto orderTaxiDto) {
+        return orderTaxiDto.getId_address_arrive().equals(orderTaxiDto.getId_address_departure());
     }
 }
