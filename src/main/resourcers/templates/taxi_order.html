@@ -13,6 +13,7 @@
     <div class="center">
         <form method="POST" th:object="${order}" th:action="@{/taxi-kyiv/client-account/makeOrder}">
             <div class="order">
+
                 <div style="height: 60px"></div>
                 <div class="formsOrder">
                     <div class="container">
@@ -30,7 +31,7 @@
 
 
                         <div class="inputOrder">
-                            <select th:field="*{address_departure}" class="selectAdress">
+                            <select th:field="*{id_address_departure}" class="selectAdress">
                                 <option th:each="address : ${addresses}" th:value="${address.getIdAddress()}">
                                     <b th:text="${address.getStreet()}"></b> <b
                                         th:text="${address.getHouseNumber()}"></b>
@@ -57,7 +58,7 @@
                         <div class="labelOrder"><h1 class="order-text label-text" th:text="#{taxi.show.address}"></h1>
                         </div>
                         <div class="inputOrder">
-                            <select th:field="*{address_arrive}" class="selectAdress">
+                            <select th:field="*{id_address_arrive}" class="selectAdress">
                                 <option th:each="address : ${addresses}" th:value="${address.getIdAddress()}">
                                     <b th:text="${address.getStreet()}"></b> <b
                                         th:text="${address.getHouseNumber()}"></b>

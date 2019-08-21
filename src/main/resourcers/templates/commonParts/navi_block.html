@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
 <body>
 
 <nav id="navi_block" th:fragment="copy">
@@ -24,7 +25,9 @@
                     <p th:text="#{label.header.menu.news}"></p>
                 </a>
             </li>
-            <li id="menu-item-431" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-431">
+
+            <li id="menu-item-431" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-431"
+                sec:authorize="!hasAuthority('DRIVER')">
                 <a href="/taxi-kyiv/client-account/making-order">
                     <p th:text="#{label.header.menu.for.make.order}"></p>
                 </a>

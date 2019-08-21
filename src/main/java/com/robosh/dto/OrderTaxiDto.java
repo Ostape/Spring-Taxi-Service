@@ -15,11 +15,11 @@ import javax.validation.constraints.NotNull;
 public class OrderTaxiDto {
     @NotNull
     @NotEmpty
-    private String address_departure;
+    private Integer id_address_departure;
 
     @NotNull
     @NotEmpty
-    private String address_arrive;
+    private Integer id_address_arrive;
 
     @NotNull
     @NotEmpty
