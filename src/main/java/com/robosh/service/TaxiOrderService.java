@@ -1,11 +1,9 @@
 package com.robosh.service;
 
-import com.robosh.dto.OrderDto;
-import com.robosh.model.entities.Client;
+import com.robosh.dto.OrderTaxiDto;
 import com.robosh.model.entities.Driver;
 import com.robosh.model.entities.Order;
 import com.robosh.model.enums.DriverStatus;
-import com.robosh.model.enums.OrderStatus;
 import com.robosh.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +21,7 @@ public class TaxiOrderService {
         this.driverService = driverService;
     }
 
-    public Order makeOrder(OrderDto orderDto){
+    public Order makeOrder(OrderTaxiDto orderDto){
         Driver driver = driverService.getDriverByDriverStatusAndCarType(orderDto.getCarType(), DriverStatus.free);
 
 //

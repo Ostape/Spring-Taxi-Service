@@ -11,7 +11,7 @@
     </header>
 
     <div class="center">
-        <form method="POST" th:action="@{/taxi-kyiv/client-account/madeOrder}">
+        <form method="POST" th:object="${order}" th:action="@{/taxi-kyiv/client-account/makeOrder}">
             <div class="order">
                 <div style="height: 60px"></div>
                 <div class="formsOrder">
@@ -27,7 +27,7 @@
 
                             <div class="labelOrder"><h1 class="order-text label-text" th:text="#{taxi.show.address}"></h1></div>
                         <div class="inputOrder">
-                            <select th:name="address_departure" class="selectAdress">
+                            <select th:name="${address_departure}" class="selectAdress">
                                 <tr th:each="address : ${addresses}">
                                     <option><b th:text="${address.getStreet()}"></b> <b th:text="${address.getHouseNumber()}"></b></option>
                                 </tr>
@@ -50,7 +50,7 @@
                         <hr style="width: 97%;margin-bottom: 15px">
                         <div class="labelOrder"><h1 class="order-text label-text" th:text="#{taxi.show.address}"></h1></div>
                         <div class="inputOrder">
-                            <select th:name="address_arrive" class="selectAdress">
+                            <select th:name="${address_arrive}" class="selectAdress">
                                 <tr th:each="address : ${addresses}">
                                     <option><b th:text="${address.getStreet()}"></b> <b th:text="${address.getHouseNumber()}"></b></option>
                                 </tr>
@@ -78,17 +78,17 @@
 <!--                                </c:if>-->
                                 <div class="cc-selector">
                                     <div class="radbox">
-                                        <input id="car" type="radio" name="carType" value="Light" checked="true"/>
+                                        <input id="car" type="radio" th:field="*{carType}" value="Light" th:checked="${true} ? 'checked'"/>
                                         <label class="drinkcard-cc car" for="car"></label>
                                     </div>
 
                                     <div class="radbox">
-                                        <input id="wagon" type="radio" name="carType" value="MiniVan"/>
+                                        <input id="wagon" type="radio" th:field="*{carType}" value="MiniVan"/>
                                         <label class="drinkcard-cc wagon" for="wagon"></label>
                                     </div>
 
                                     <div class="radbox">
-                                        <input id="truck" type="radio" name="carType" value="Wagon"/>
+                                        <input id="truck" type="radio" th:field="*{carType}" value="Wagon"/>
                                         <label class="drinkcard-cc truck" for="truck"></label>
                                     </div>
                                 </div>
@@ -114,7 +114,7 @@
                         <hr style="width: 97%;margin-bottom: 15px">
                         <div class="labelOrder"><h1 class="order-text label-text" th:text="#{taxi.order.coupon.name}"></h1></div>
                         <div class="inputOrder">
-                            <input type="text" th:placeholder="#{taxi.order.coupon}" name="coupon" class="inputO">
+                            <input type="text" th:placeholder="#{taxi.order.coupon}" th:field="*{coupon}" class="inputO">
                         </div>
                         <div style="clear: both;"></div>
                     </div>

@@ -1,9 +1,8 @@
 package com.robosh.controllers;
 
-import com.robosh.dto.OrderDto;
+import com.robosh.dto.OrderTaxiDto;
 import com.robosh.service.AddressService;
 import com.robosh.service.DriverService;
-import com.robosh.service.OrderShowPagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,13 +32,16 @@ public class TaxiOrderController {
     @GetMapping("/making-order")
     public String makingTaxiOrder(Model model){
         model.addAttribute("addresses", addressService.getAllAddresses());
+        model.addAttribute("order", new OrderTaxiDto());
         return "taxi_order";
     }
 
-    @PostMapping("/madeOrder")
-    public String madeOrder(@NotNull @Valid OrderDto dto) {
+    @PostMapping("/makeOrder")
+    public String madeOrder(@NotNull @Valid OrderTaxiDto dto) {
 
         @NotNull @NotEmpty String carType = dto.getCarType();
+
+        System.out.println(dto);
 
         if (driverService.checkIfDriverIsFree(carType)) {
 
