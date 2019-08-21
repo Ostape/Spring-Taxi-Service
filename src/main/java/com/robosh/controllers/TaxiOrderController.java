@@ -38,8 +38,7 @@ public class TaxiOrderController {
 
     @GetMapping("/making-order")
     public String makingTaxiOrder(Model model){
-        model.addAttribute("order", new OrderTaxiDto());
-        model.addAttribute("addresses", new ArrayList<>(addressService.getAllAddresses()));
+        setAttributes(model,new OrderTaxiDto());
         return "taxi_order";
     }
 
@@ -53,29 +52,49 @@ public class TaxiOrderController {
                             BindingResult result, Model model, Principal principal) {
         Client client = clientService.getClientByPhoneNumber(principal.getName());
 
-        if (result.hasErrors()){
-            System.out.println("result error");
-            model.addAttribute("order", dto);
-            model.addAttribute("addresses", new ArrayList<>(addressService.getAllAddresses()));
+        if (hasValidationErrors(result, dto)){
+            setAttributes(model,dto);
             return "taxi_order";
         }
 
-
-        try {
-            orderService.makeOrder(dto, client);
-        }catch (NoDriverAvailableException e){
-            System.out.println("carType errprs");
+        if (!makeOrderIfDriverAvailable(dto, client)) {
             result.rejectValue("carType", "taxi.order.no.car");
-            model.addAttribute("order", dto);
-            model.addAttribute("addresses", new ArrayList<>(addressService.getAllAddresses()));
+            setAttributes(model, dto);
             return "taxi_order";
         }
 
         return "redirect:/taxi-kyiv/client-account/order-status";
     }
 
-
-    private boolean isEqualAddresses(OrderTaxiDto orderTaxiDto) {
-        return orderTaxiDto.getId_address_arrive().equals(orderTaxiDto.getId_address_departure());
+    private void setAttributes(Model model, OrderTaxiDto dto){
+        model.addAttribute("order", dto);
+        model.addAttribute("addresses", new ArrayList<>(addressService.getAllAddresses()));
     }
+
+    private boolean hasValidationErrors(BindingResult result, OrderTaxiDto orderTaxiDto) {
+        if (isNotEqualAddresses(orderTaxiDto, result)){
+            return true;
+        }
+        return result.hasErrors();
+    }
+
+    private boolean isNotEqualAddresses(OrderTaxiDto orderTaxiDto, BindingResult result) {
+        Long idAddressDeparture = orderTaxiDto.getId_address_departure();
+        Long idAddressArrive = orderTaxiDto.getId_address_arrive();
+        if (idAddressArrive.equals(idAddressDeparture)){
+            result.rejectValue("id_address_departure", "taxi.order.choose.error");
+            return true;
+        }
+        return false;
+    }
+
+    private boolean makeOrderIfDriverAvailable(OrderTaxiDto dto, Client client){
+        try {
+            orderService.makeOrder(dto, client);
+        }catch (NoDriverAvailableException e){
+            return false;
+        }
+        return true;
+    }
+
 }
