@@ -1,6 +1,7 @@
 package com.robosh.controllers;
 
 import com.robosh.dto.OrderTaxiDto;
+import com.robosh.model.enums.DriverStatus;
 import com.robosh.service.AddressService;
 import com.robosh.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,21 +42,21 @@ public class TaxiOrderController {
 
     @PostMapping("/makeOrder")
     public String madeOrder(@ModelAttribute("client") @NotNull @Valid OrderTaxiDto dto, BindingResult result, Model model) {
-        System.out.println("tytb");
         if (result.hasErrors()){
-            System.out.println("here");
             model.addAttribute("order", dto);
             model.addAttribute("addresses", new ArrayList<>(addressService.getAllAddresses()));
             return "taxi_order";
         }
         String carType = dto.getCarType();
 
-        System.out.println(dto);
+        driverService.updateDriver(DriverStatus.booked, 1L);
 
-        if (driverService.checkIfDriverIsFree(carType)) {
+        if (driverService.getDriverIfFree(carType) != null) {
             //todo redirect
             return "order_status";
         }
+
+        //todo addAtribute
         return "taxi_order";
     }
 }
