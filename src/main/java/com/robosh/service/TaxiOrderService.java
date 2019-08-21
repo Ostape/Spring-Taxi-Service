@@ -55,7 +55,10 @@ public class TaxiOrderService {
     }
 
     private int getPriceWithCoupon(int price, Coupon coupon) {
-        Integer discountPercent = couponService.getDiscount(coupon);
+        int discountPercent = 0;
+        if (coupon != null) {
+            discountPercent = couponService.getDiscount(coupon);
+        }
         return (int) (price - price * (double) discountPercent / 100);
     }
 
