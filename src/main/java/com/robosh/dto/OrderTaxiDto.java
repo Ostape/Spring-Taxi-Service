@@ -14,10 +14,10 @@ import javax.validation.constraints.NotNull;
 @Builder
 public class OrderTaxiDto {
     @NotNull
-    private Integer id_address_departure;
+    private Long id_address_departure;
 
     @NotNull
-    private Integer id_address_arrive;
+    private Long id_address_arrive;
 
     @NotNull
     @NotEmpty(message = "{order.taxi.select.error}")

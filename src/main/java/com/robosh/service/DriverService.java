@@ -1,5 +1,6 @@
 package com.robosh.service;
 
+import com.robosh.model.customExceptions.NoDriverAvailableException;
 import com.robosh.model.entities.Driver;
 import com.robosh.model.enums.DriverStatus;
 import com.robosh.repository.DriverRepository;
@@ -18,15 +19,13 @@ public class DriverService {
         return driverRepository.findByPhoneNumber(phoneNumber);
     }
 
-//
-//
-//    public Driver bookDriver(String carType){
-//        Driver driver = getDriverIfFree(carType);
-//        return driver == null ? null :  driver.setDriverStatus(DriverStatus.booked);
-//    }
 
     public Driver getDriverIfFree(String carType) {
-        return driverRepository.findByDriverStatusAndCarType(carType, DriverStatus.free.name());
+        Driver driver = driverRepository.findByDriverStatusAndCarType(carType, DriverStatus.free.name());
+        if (driver == null) {
+            throw new NoDriverAvailableException("No driver available with such car type: " + carType);
+        }
+        return driver;
     }
 
     @Transactional

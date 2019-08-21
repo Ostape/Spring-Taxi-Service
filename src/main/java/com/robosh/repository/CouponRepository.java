@@ -4,4 +4,5 @@ import com.robosh.model.entities.Coupon;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CouponRepository extends JpaRepository<Coupon, Long> {
+    Coupon findByCouponName(String couponName);
 }

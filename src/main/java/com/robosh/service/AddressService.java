@@ -19,4 +19,8 @@ public class AddressService {
     public List<Address> getAllAddresses(){
         return addressRepository.findAll();
     }
+
+    public Address getAddressById(Long idAddress) {
+        return addressRepository.findByIdAddress(idAddress);
+    }
 }
