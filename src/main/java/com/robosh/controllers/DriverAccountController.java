@@ -40,12 +40,18 @@ public class DriverAccountController {
     @GetMapping
     public String showDriverPage(Model model, Principal principal, HttpServletRequest request){
         Driver driver = driverService.getDriverByPhoneNumber(principal.getName());
+        addDriverAttributeToAccount(model, driver);
+
+
+        return "driver_account";
+    }
+
+    private void addDriverAttributeToAccount(Model model, Driver driver) {
         model.addAttribute("name", driver.getName());
         model.addAttribute("surname", driver.getSurname());
         model.addAttribute("phone_number", driver.getPhoneNumber());
         model.addAttribute("auto_type", driver.getCar().getCarType());
         model.addAttribute("status", driver.getDriverStatus());
-        return "driver_account";
     }
 
     @GetMapping("/show-orders")
