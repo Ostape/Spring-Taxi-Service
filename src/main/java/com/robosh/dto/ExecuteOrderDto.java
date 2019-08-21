@@ -6,17 +6,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ExecuteOrder {
+public class ExecuteOrderDto {
 
     @NotNull
-    @NotEmpty
-    @ValidOrderInput
-    private String executeOrder;
+    @ValidOrderInput(message = "{driver.account.mess.error}")
+    private String numOfOrder;
 }

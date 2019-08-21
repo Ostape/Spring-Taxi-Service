@@ -1,8 +1,10 @@
 package com.robosh.controllers;
 
 
+import com.robosh.dto.ExecuteOrderDto;
 import com.robosh.model.entities.Driver;
 import com.robosh.model.entities.Order;
+import com.robosh.model.enums.DriverStatus;
 import com.robosh.service.DriverService;
 import com.robosh.service.OrderShowPagService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +12,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
@@ -38,12 +39,19 @@ public class DriverAccountController {
 
 
     @GetMapping
-    public String showDriverPage(Model model, Principal principal, HttpServletRequest request){
-        Driver driver = driverService.getDriverByPhoneNumber(principal.getName());
-        addDriverAttributeToAccount(model, driver);
-
-
+    public String showDriverPage(Model model, Principal principal){
+        addDriverInfoAttribute(model, principal, new ExecuteOrderDto());
         return "driver_account";
+    }
+
+    private void addDriverInfoAttribute(Model model, Principal principal, ExecuteOrderDto dto) {
+        Driver driver = getDriver(principal);
+        addDriverAttributeToAccount(model, driver);
+        model.addAttribute("execute_order", dto);
+    }
+
+    private Driver getDriver(Principal principal) {
+        return driverService.getDriverByPhoneNumber(principal.getName());
     }
 
     private void addDriverAttributeToAccount(Model model, Driver driver) {
@@ -52,6 +60,23 @@ public class DriverAccountController {
         model.addAttribute("phone_number", driver.getPhoneNumber());
         model.addAttribute("auto_type", driver.getCar().getCarType());
         model.addAttribute("status", driver.getDriverStatus());
+    }
+
+    @PostMapping("/enterNumOrder")
+    public String executeOrder(@ModelAttribute("execute_order") @Valid ExecuteOrderDto executeOrderDto,
+                               BindingResult result, Principal principal, Model model){
+        if (result.hasErrors()){
+            addDriverInfoAttribute(model, principal, executeOrderDto);
+            return "driver_account";
+        }
+        Driver driver = getDriver(principal);
+
+        if (executeOrderDto != null && driver.getDriverStatus().equals(DriverStatus.booked)){
+            System.out.println(executeOrderDto);
+        }
+
+        addDriverInfoAttribute(model, principal, executeOrderDto);
+        return "driver_account";
     }
 
     @GetMapping("/show-orders")
