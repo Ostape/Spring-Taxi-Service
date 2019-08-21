@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 public class ExecuteDriverValidator implements ConstraintValidator<ValidOrderInput, String> {
     private Pattern pattern;
     private Matcher matcher;
-    private static final String CORRECT_INPUT = "[\\D]";
+    private static final String CORRECT_INPUT = "[0-9]+";
 
     @Override
     public void initialize(ValidOrderInput constraintAnnotation) {
@@ -21,12 +21,12 @@ public class ExecuteDriverValidator implements ConstraintValidator<ValidOrderInp
         if(driverInput == null){
             return false;
         }
-        return !validateOrderDriverInput(driverInput);
+        return validateOrderDriverInput(driverInput);
     }
 
-    private boolean validateOrderDriverInput(String username) {
+    private boolean validateOrderDriverInput(String driverInput) {
         pattern = Pattern.compile(CORRECT_INPUT);
-        matcher = pattern.matcher(username);
+        matcher = pattern.matcher(driverInput);
         return matcher.matches();
     }
 }

@@ -1,6 +1,8 @@
 package com.robosh.service;
 
+import com.robosh.dto.ExecuteOrderDto;
 import com.robosh.dto.OrderTaxiDto;
+import com.robosh.model.customExceptions.NoSuchDriverOrderException;
 import com.robosh.model.entities.*;
 import com.robosh.model.enums.DriverStatus;
 import com.robosh.model.enums.OrderStatus;
@@ -62,4 +64,19 @@ public class TaxiOrderService {
         return (int) (price - price * (double) discountPercent / 100);
     }
 
+    @Transactional
+    public void executeOrder(Long idDriver, Long idOrder) {
+        Order order = orderRepository.findByIdOrderAndOrderStatus(idOrder, OrderStatus.EXECUTING);
+        if (order == null) {
+            throw new NoSuchDriverOrderException();
+        }
+        //if null
+
+        Driver driverFromOrder = order.getDriver();
+        if (!driverFromOrder.getPersonId().equals(idDriver)){
+            throw new NoSuchDriverOrderException();
+        }
+        order.setOrderStatus(OrderStatus.COMPLETE);
+        driverFromOrder.setDriverStatus(DriverStatus.free);
+    }
 }

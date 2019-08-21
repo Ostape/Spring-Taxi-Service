@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-lg-12">
                             <div th:if="${#strings.equals(status, 'booked')}">
-                                <form class="make-order" th:action="@{/taxi-kyiv/driver-account/enterNumOrder}"
+                                <form class="make-order" th:action="@{/taxi-kyiv/driver-account/enterNumOfOrder}"
                                      th:object="${execute_order}" method="POST">
                                     <p class="errorsM" th:if="${#fields.hasErrors('numOfOrder')}" th:errors="*{numOfOrder}" >Validation error</p>
                                     <button type="submit" class="account-driver-btns" th:text="#{driver.account.order}"></button>

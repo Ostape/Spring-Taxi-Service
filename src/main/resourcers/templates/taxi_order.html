@@ -80,9 +80,7 @@
                         <div class="inputOrder" style="padding: 10px;">
 
                             <div>
-                                <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
                                 <p class="errorsM" th:if="${#fields.hasErrors('carType')}" th:errors="*{carType}" >Validation error</p>
-                                <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
                                 <div class="cc-selector">
                                     <div class="radbox">
                                         <input id="car" type="radio" th:field="*{carType}" value="light"

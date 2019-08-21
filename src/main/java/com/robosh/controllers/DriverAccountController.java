@@ -2,11 +2,13 @@ package com.robosh.controllers;
 
 
 import com.robosh.dto.ExecuteOrderDto;
+import com.robosh.model.customExceptions.NoSuchDriverOrderException;
 import com.robosh.model.entities.Driver;
 import com.robosh.model.entities.Order;
 import com.robosh.model.enums.DriverStatus;
 import com.robosh.service.DriverService;
 import com.robosh.service.OrderShowPagService;
+import com.robosh.service.TaxiOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,16 +27,16 @@ import java.util.stream.IntStream;
 @Controller
 @RequestMapping("/taxi-kyiv/driver-account")
 public class DriverAccountController {
-
-    @Autowired
     private final DriverService driverService;
+    private final OrderShowPagService orderShowPagService;
+    private final TaxiOrderService taxiOrderService;
 
     @Autowired
-    private final OrderShowPagService orderShowPagService;
-
-    public DriverAccountController(DriverService driverService, OrderShowPagService orderShowPagService) {
+    public DriverAccountController(DriverService driverService, OrderShowPagService orderShowPagService,
+                                   TaxiOrderService taxiOrderService) {
         this.driverService = driverService;
         this.orderShowPagService = orderShowPagService;
+        this.taxiOrderService = taxiOrderService;
     }
 
 
@@ -62,7 +64,7 @@ public class DriverAccountController {
         model.addAttribute("status", driver.getDriverStatus());
     }
 
-    @PostMapping("/enterNumOrder")
+    @PostMapping("/enterNumOfOrder")
     public String executeOrder(@ModelAttribute("execute_order") @Valid ExecuteOrderDto executeOrderDto,
                                BindingResult result, Principal principal, Model model){
         if (result.hasErrors()){
@@ -72,7 +74,12 @@ public class DriverAccountController {
         Driver driver = getDriver(principal);
 
         if (executeOrderDto != null && driver.getDriverStatus().equals(DriverStatus.booked)){
-            System.out.println(executeOrderDto);
+            try {
+                taxiOrderService.executeOrder(driver.getPersonId(), Long.valueOf(executeOrderDto.getNumOfOrder()));
+            }catch (NoSuchDriverOrderException e){
+
+            }
+            return "redirect:/taxi-kyiv/driver-account";
         }
 
         addDriverInfoAttribute(model, principal, executeOrderDto);
