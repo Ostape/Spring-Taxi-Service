@@ -4,7 +4,7 @@ import com.robosh.dto.RegistrationClientDto;
 import com.robosh.model.entities.Client;
 
 public interface AbstractClientService {
-    Client getClientByPhoneNumber(String phoneNumber);
+    Client getClientByPhoneNumber(final String phoneNumber);
 
-    Client registerNewClient(RegistrationClientDto clientDto);
+    Client registerNewClient(final RegistrationClientDto clientDto);
 }
