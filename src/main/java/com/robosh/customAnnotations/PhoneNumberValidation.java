@@ -1,6 +1,6 @@
-package com.robosh.model.customAnnotations;
+package com.robosh.customAnnotations;
 
-import com.robosh.model.customAnnotations.annotations.ValidPhoneNumber;
+import com.robosh.customAnnotations.annotations.ValidPhoneNumber;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

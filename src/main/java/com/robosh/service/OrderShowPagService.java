@@ -21,7 +21,7 @@ public class OrderShowPagService {
         this.orderRepository = orderRepository;
     }
 
-    public Page<Order> getCurrentOrder(Pageable pageable){
+    public Page<Order> getCurrentOrder(Pageable pageable) {
         return orderRepository.findAll(pageable);
     }
 

@@ -1,10 +1,10 @@
 package com.robosh.service;
 
 import com.robosh.dto.RegistrationClientDto;
-import com.robosh.model.customExceptions.EmailAndPhoneNumberIsAlreadyTaken;
-import com.robosh.model.customExceptions.EmailIsAlreadyTaken;
-import com.robosh.model.customExceptions.PasswordNotEquals;
-import com.robosh.model.customExceptions.PhoneNumberIsAlreadyTaken;
+import com.robosh.customExceptions.EmailAndPhoneNumberIsAlreadyTaken;
+import com.robosh.customExceptions.EmailIsAlreadyTaken;
+import com.robosh.customExceptions.PasswordNotEquals;
+import com.robosh.customExceptions.PhoneNumberIsAlreadyTaken;
 import com.robosh.model.entities.Client;
 import com.robosh.model.enums.Role;
 import com.robosh.repository.ClientRepository;
@@ -30,7 +30,7 @@ public class ClientService {
     }
 
     private void isPasswordEqual(RegistrationClientDto clientDto) {
-        if (!clientDto.getPassword().equals(clientDto.getPassword_repeat())){
+        if (!clientDto.getPassword().equals(clientDto.getPassword_repeat())) {
             throw new PasswordNotEquals("Password not equals: " + clientDto.getPassword() + " and " +
                     clientDto.getPassword_repeat());
         }

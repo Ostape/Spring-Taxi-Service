@@ -1,10 +1,10 @@
 package com.robosh.controllers;
 
 import com.robosh.dto.RegistrationClientDto;
-import com.robosh.model.customExceptions.EmailAndPhoneNumberIsAlreadyTaken;
-import com.robosh.model.customExceptions.EmailIsAlreadyTaken;
-import com.robosh.model.customExceptions.PasswordNotEquals;
-import com.robosh.model.customExceptions.PhoneNumberIsAlreadyTaken;
+import com.robosh.customExceptions.EmailAndPhoneNumberIsAlreadyTaken;
+import com.robosh.customExceptions.EmailIsAlreadyTaken;
+import com.robosh.customExceptions.PasswordNotEquals;
+import com.robosh.customExceptions.PhoneNumberIsAlreadyTaken;
 import com.robosh.model.entities.Client;
 import com.robosh.service.ClientService;
 import org.springframework.stereotype.Controller;

@@ -1,8 +1,8 @@
 package com.robosh.controllers;
 
 
-import com.robosh.dto.ExecuteOrderDto;
-import com.robosh.model.customExceptions.NoSuchDriverOrderException;
+import com.robosh.dto.DriverExecuteOrderDto;
+import com.robosh.customExceptions.NoSuchDriverOrderException;
 import com.robosh.model.entities.Driver;
 import com.robosh.model.entities.Order;
 import com.robosh.model.enums.DriverStatus;
@@ -42,11 +42,11 @@ public class DriverAccountController {
 
     @GetMapping
     public String showDriverPage(Model model, Principal principal){
-        addDriverInfoAttribute(model, principal, new ExecuteOrderDto());
+        addDriverInfoAttribute(model, principal, new DriverExecuteOrderDto());
         return "driver_account";
     }
 
-    private void addDriverInfoAttribute(Model model, Principal principal, ExecuteOrderDto dto) {
+    private void addDriverInfoAttribute(Model model, Principal principal, DriverExecuteOrderDto dto) {
         Driver driver = getDriver(principal);
         addDriverAttributeToAccount(model, driver);
         model.addAttribute("execute_order", dto);
@@ -65,26 +65,26 @@ public class DriverAccountController {
     }
 
     @PostMapping("/enterNumOfOrder")
-    public String executeOrder(@ModelAttribute("execute_order") @Valid ExecuteOrderDto executeOrderDto,
+    public String executeOrder(@ModelAttribute("execute_order") @Valid DriverExecuteOrderDto driverExecuteOrderDto,
                                BindingResult result, Principal principal, Model model){
         if (result.hasErrors()){
-            addDriverInfoAttribute(model, principal, executeOrderDto);
+            addDriverInfoAttribute(model, principal, driverExecuteOrderDto);
             return "driver_account";
         }
         Driver driver = getDriver(principal);
 
-        if (executeOrderDto != null && driver.getDriverStatus().equals(DriverStatus.booked)){
+        if (driverExecuteOrderDto != null && driver.getDriverStatus().equals(DriverStatus.booked)){
             try {
-                taxiOrderService.performOrder(driver.getPersonId(), Long.valueOf(executeOrderDto.getNumOfOrder()));
+                taxiOrderService.performOrder(driver.getPersonId(), Long.valueOf(driverExecuteOrderDto.getNumOfOrder()));
             }catch (NoSuchDriverOrderException e){
                 result.rejectValue("numOfOrder", "driver.account.mess.error.2");
-                addDriverInfoAttribute(model, principal, executeOrderDto);
+                addDriverInfoAttribute(model, principal, driverExecuteOrderDto);
                 return "driver_account";
             }
             return "redirect:/taxi-kyiv/driver-account";
         }
 
-        addDriverInfoAttribute(model, principal, executeOrderDto);
+        addDriverInfoAttribute(model, principal, driverExecuteOrderDto);
         return "driver_account";
     }
 

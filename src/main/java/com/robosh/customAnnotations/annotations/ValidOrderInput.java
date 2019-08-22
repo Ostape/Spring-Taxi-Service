@@ -1,7 +1,6 @@
-package com.robosh.model.customAnnotations.annotations;
+package com.robosh.customAnnotations.annotations;
 
-
-import com.robosh.model.customAnnotations.UsernameValidator;
+import com.robosh.customAnnotations.ExecuteDriverValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -14,10 +13,10 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({TYPE, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = UsernameValidator.class)
+@Constraint(validatedBy = ExecuteDriverValidator.class)
 @Documented
-public @interface ValidUsername {
-    String message() default "Invalid username";
+public @interface ValidOrderInput {
+    String message() default "Invalid order input";
 
     Class<?>[] groups() default {};
 

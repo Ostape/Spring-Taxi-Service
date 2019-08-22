@@ -9,7 +9,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString(callSuper=true, includeFieldNames=true)
+@ToString(callSuper = true, includeFieldNames = true)
 
 @Entity
 @Table(name = "`order`")

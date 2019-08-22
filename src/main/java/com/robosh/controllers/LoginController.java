@@ -1,5 +1,6 @@
 package com.robosh.controllers;
 
+import com.robosh.model.enums.Role;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,8 +21,8 @@ public class LoginController {
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Collection<? extends GrantedAuthority> authorities = new HashSet<>(auth.getAuthorities());
-        boolean isClient = authorities.contains(new SimpleGrantedAuthority("CLIENT"));
-        boolean isDriver = authorities.contains(new SimpleGrantedAuthority("DRIVER"));
+        boolean isClient = authorities.contains(new SimpleGrantedAuthority(Role.CLIENT.name()));
+        boolean isDriver = authorities.contains(new SimpleGrantedAuthority(Role.DRIVER.name()));
 
         if (isClient) {
             return "redirect:/taxi-kyiv/client-account";

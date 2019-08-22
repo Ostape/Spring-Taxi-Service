@@ -1,4 +1,4 @@
-package com.robosh.model.customExceptions;
+package com.robosh.customExceptions;
 
 public class NoDriverAvailableException extends RuntimeException {
     public NoDriverAvailableException() {

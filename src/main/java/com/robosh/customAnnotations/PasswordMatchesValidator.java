@@ -1,7 +1,6 @@
-package com.robosh.model.customAnnotations;
+package com.robosh.customAnnotations;
 
-import com.robosh.dto.RegistrationClientDto;
-import com.robosh.model.customAnnotations.annotations.PasswordMatches;
+import com.robosh.customAnnotations.annotations.PasswordMatches;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

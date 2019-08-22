@@ -1,6 +1,6 @@
-package com.robosh.model.customAnnotations;
+package com.robosh.customAnnotations;
 
-import com.robosh.model.customAnnotations.annotations.ValidUsername;
+import com.robosh.customAnnotations.annotations.ValidUsername;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -19,7 +19,7 @@ public class UsernameValidator implements ConstraintValidator<ValidUsername, Str
 
     @Override
     public boolean isValid(String username, ConstraintValidatorContext constraintValidatorContext) {
-        if(username == null){
+        if (username == null) {
             return false;
         }
         return validateUsername(username);

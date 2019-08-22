@@ -1,8 +1,7 @@
 package com.robosh.service;
 
-import com.robosh.dto.ExecuteOrderDto;
 import com.robosh.dto.OrderTaxiDto;
-import com.robosh.model.customExceptions.NoSuchDriverOrderException;
+import com.robosh.customExceptions.NoSuchDriverOrderException;
 import com.robosh.model.entities.*;
 import com.robosh.model.enums.DriverStatus;
 import com.robosh.model.enums.OrderStatus;
@@ -73,7 +72,7 @@ public class TaxiOrderService {
         //if null
 
         Driver driverFromOrder = order.getDriver();
-        if (!driverFromOrder.getPersonId().equals(idDriver)){
+        if (!driverFromOrder.getPersonId().equals(idDriver)) {
             throw new NoSuchDriverOrderException();
         }
         order.setOrderStatus(OrderStatus.COMPLETE);

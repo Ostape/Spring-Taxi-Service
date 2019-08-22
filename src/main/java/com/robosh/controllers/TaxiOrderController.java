@@ -1,7 +1,7 @@
 package com.robosh.controllers;
 
 import com.robosh.dto.OrderTaxiDto;
-import com.robosh.model.customExceptions.NoDriverAvailableException;
+import com.robosh.customExceptions.NoDriverAvailableException;
 import com.robosh.model.entities.Client;
 import com.robosh.service.AddressService;
 import com.robosh.service.ClientService;

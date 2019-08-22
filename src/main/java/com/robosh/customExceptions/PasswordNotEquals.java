@@ -1,4 +1,4 @@
-package com.robosh.model.customExceptions;
+package com.robosh.customExceptions;
 
 public class PasswordNotEquals extends RuntimeException {
     public PasswordNotEquals() {

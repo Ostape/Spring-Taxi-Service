@@ -1,6 +1,6 @@
 package com.robosh.service;
 
-import com.robosh.model.customExceptions.NoDriverAvailableException;
+import com.robosh.customExceptions.NoDriverAvailableException;
 import com.robosh.model.entities.Driver;
 import com.robosh.model.enums.DriverStatus;
 import com.robosh.repository.DriverRepository;

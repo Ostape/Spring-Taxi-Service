@@ -1,6 +1,6 @@
-package com.robosh.model.customAnnotations;
+package com.robosh.customAnnotations;
 
-import com.robosh.model.customAnnotations.annotations.ValidOrderInput;
+import com.robosh.customAnnotations.annotations.ValidOrderInput;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

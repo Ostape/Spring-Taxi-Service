@@ -1,6 +1,6 @@
 package com.robosh.dto;
 
-import com.robosh.model.customAnnotations.annotations.ValidOrderInput;
+import com.robosh.customAnnotations.annotations.ValidOrderInput;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ExecuteOrderDto {
+public class DriverExecuteOrderDto {
 
     @NotNull
     @ValidOrderInput(message = "{driver.account.mess.error}")

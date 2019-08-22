@@ -13,23 +13,20 @@ import javax.persistence.Enumerated;
 import java.util.Optional;
 
 
-//todo integer -> long
 public interface DriverRepository extends JpaRepository<Driver, Long> {
     Driver findByPhoneNumberAndPassword(String phoneNumber, String password);
+
     Driver findByPhoneNumber(String phoneNumber);
 
     @Modifying
     @Query(value = "UPDATE person SET driver_status = :driverStatus WHERE (person_id = :personId)", nativeQuery = true)
     void updateDriverStatus(@Param("driverStatus") String driverStatus, @Param("personId") Long personId);
 
-
-
-        // todo
     @Query(value = "select person.name, person.surname, person.person_id," +
             " person.active, person.password, person.phone_number, person.driver_status, person.middle_name, person.id_car, person.role from person " +
             " join car on person.id_car = car.id_car " +
             " where person.driver_status = :driverStatus " +
             " and car.car_type = :carType limit 1"
-    ,nativeQuery = true)
+            , nativeQuery = true)
     Driver findByDriverStatusAndCarType(@Param("carType") String carType, @Param("driverStatus") String driverStatus);
 }

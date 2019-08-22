@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
-@ToString(callSuper=true, includeFieldNames=true)
+@ToString(callSuper = true, includeFieldNames = true)
 @Entity
 public class Client extends Person {
     @Column(unique = true)

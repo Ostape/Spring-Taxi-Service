@@ -1,6 +1,6 @@
-package com.robosh.model.customAnnotations;
+package com.robosh.customAnnotations;
 
-import com.robosh.model.customAnnotations.annotations.ValidEmail;
+import com.robosh.customAnnotations.annotations.ValidEmail;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

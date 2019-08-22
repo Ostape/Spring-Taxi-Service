@@ -1,8 +1,9 @@
-package com.robosh.model.customExceptions;
+package com.robosh.customExceptions;
 
 /**
  * my own custom exception that should be
  * thrown when email is already exists in database
+ *
  * @author Orest Shemelyuk
  */
 public class EmailIsAlreadyTaken extends RuntimeException {

@@ -1,7 +1,7 @@
-package com.robosh.model.customAnnotations.annotations;
+package com.robosh.customAnnotations.annotations;
 
 
-import com.robosh.model.customAnnotations.PasswordMatchesValidator;
+import com.robosh.customAnnotations.PasswordMatchesValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -13,7 +13,7 @@ import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 
-@Target({TYPE,FIELD, ANNOTATION_TYPE})
+@Target({TYPE, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = PasswordMatchesValidator.class)
 @Documented

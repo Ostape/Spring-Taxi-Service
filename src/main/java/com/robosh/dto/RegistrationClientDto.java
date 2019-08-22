@@ -1,9 +1,9 @@
 package com.robosh.dto;
 
-import com.robosh.model.customAnnotations.annotations.PasswordMatches;
-import com.robosh.model.customAnnotations.annotations.ValidEmail;
-import com.robosh.model.customAnnotations.annotations.ValidPhoneNumber;
-import com.robosh.model.customAnnotations.annotations.ValidUsername;
+import com.robosh.customAnnotations.annotations.PasswordMatches;
+import com.robosh.customAnnotations.annotations.ValidEmail;
+import com.robosh.customAnnotations.annotations.ValidPhoneNumber;
+import com.robosh.customAnnotations.annotations.ValidUsername;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,6 +1,7 @@
-package com.robosh.model.customAnnotations.annotations;
+package com.robosh.customAnnotations.annotations;
 
-import com.robosh.model.customAnnotations.EmailValidator;
+
+import com.robosh.customAnnotations.PhoneNumberValidation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -13,10 +14,10 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({TYPE, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = EmailValidator.class)
+@Constraint(validatedBy = PhoneNumberValidation.class)
 @Documented
-public @interface ValidEmail {
-    String message() default "Invalid email";
+public @interface ValidPhoneNumber {
+    String message() default "Invalid phone number";
 
     Class<?>[] groups() default {};
 
