@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 public class AddressService implements AbstractAddressService {
-    private final Logger logger = LogManager.getLogger(ClientService.class);
+    private final Logger logger = LogManager.getLogger(AddressService.class);
     private final AddressRepository addressRepository;
 
     @Autowired

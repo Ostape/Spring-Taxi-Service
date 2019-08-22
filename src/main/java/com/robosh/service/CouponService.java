@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CouponService implements AbstractCouponService {
-    private final Logger logger = LogManager.getLogger(ClientService.class);
+    private final Logger logger = LogManager.getLogger(CouponService.class);
     private final CouponRepository couponRepository;
 
     @Autowired
