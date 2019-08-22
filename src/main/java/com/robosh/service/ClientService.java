@@ -34,13 +34,15 @@ public class ClientService implements AbstractClientService {
     @Override
     public Client registerNewClient(final RegistrationClientDto clientDto)
             throws EmailIsAlreadyTaken, PhoneNumberIsAlreadyTaken {
-        isPasswordEqual(clientDto);
-        isNotDuplicatedData(clientDto);
+        logger.info("registering client: " + clientDto);
+        passwordEqual(clientDto);
+        notDuplicatedData(clientDto);
         Client client = convertDtoClientToClientEntity(clientDto);
+        logger.info("save client to db: " + client);
         return clientRepository.save(client);
     }
 
-    private void isPasswordEqual(final RegistrationClientDto clientDto) {
+    private void passwordEqual(final RegistrationClientDto clientDto) {
         String password = clientDto.getPassword();
         String passwordRepeat = clientDto.getPassword_repeat();
 
@@ -50,7 +52,7 @@ public class ClientService implements AbstractClientService {
         }
     }
 
-    private void isNotDuplicatedData(final RegistrationClientDto clientDto) {
+    private void notDuplicatedData(final RegistrationClientDto clientDto) {
         String phoneNumber = clientDto.getPhone_number();
         String email = clientDto.getEmail();
 
