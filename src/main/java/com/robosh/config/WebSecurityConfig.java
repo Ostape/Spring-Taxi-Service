@@ -33,17 +33,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/taxi-kyiv/driver-account/**").hasAuthority("DRIVER")
                 .antMatchers("/*")
                 .authenticated()
-                    .and()
+                .and()
                 .csrf().disable()
                 .formLogin()
                 .loginPage("/taxi-kyiv/login")
                 .defaultSuccessUrl("/default", true)
                 .failureUrl("/taxi-kyiv/login?error=true")
                 .permitAll()
-                    .and()
+                .and()
                 .logout()
                 .logoutSuccessUrl("/taxi-kyiv")
-                    .permitAll()
+                .permitAll()
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage("/taxi-kyiv/access-denied");
@@ -63,8 +63,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         super.configure(web);
         web
-            .ignoring()
-            .antMatchers("/css/**", "/img/**", "/js/**", "/errors/**");
+                .ignoring()
+                .antMatchers("/css/**", "/img/**", "/js/**", "/errors/**");
     }
 
     @Bean
