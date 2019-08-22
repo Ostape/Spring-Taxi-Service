@@ -16,7 +16,7 @@ public class AddressService implements AbstractAddressService {
     private final AddressRepository addressRepository;
 
     @Autowired
-    public AddressService(AddressRepository addressRepository) {
+    public AddressService(final AddressRepository addressRepository) {
         this.addressRepository = addressRepository;
     }
 
@@ -27,7 +27,7 @@ public class AddressService implements AbstractAddressService {
     }
 
     @Override
-    public Address getAddressById(Long idAddress) {
+    public Address getAddressById(final Long idAddress) {
         logger.info("get address by id: " + idAddress);
         return addressRepository.findByIdAddress(idAddress);
     }
