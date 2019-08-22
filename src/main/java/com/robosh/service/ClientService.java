@@ -1,57 +1,74 @@
 package com.robosh.service;
 
-import com.robosh.dto.RegistrationClientDto;
 import com.robosh.customExceptions.EmailAndPhoneNumberIsAlreadyTaken;
 import com.robosh.customExceptions.EmailIsAlreadyTaken;
 import com.robosh.customExceptions.PasswordNotEquals;
 import com.robosh.customExceptions.PhoneNumberIsAlreadyTaken;
+import com.robosh.dto.RegistrationClientDto;
 import com.robosh.model.entities.Client;
 import com.robosh.model.enums.Role;
 import com.robosh.repository.ClientRepository;
+import com.robosh.service.abstractService.AbstractClientService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
-public class ClientService {
+public class ClientService implements AbstractClientService {
+    private final Logger logger = LogManager.getLogger(ClientService.class);
     private final ClientRepository clientRepository;
 
-    public ClientService(ClientRepository clientRepository) {
+    @Autowired
+    public ClientService(final ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
 
-    public Client getClientByPhoneNumber(String phoneNumber) {
+    @Override
+    public Client getClientByPhoneNumber(final String phoneNumber) {
+        logger.info("get client by phone number" + phoneNumber);
         return clientRepository.findByPhoneNumber(phoneNumber);
     }
 
-    public Client registerNewClient(RegistrationClientDto clientDto) throws EmailIsAlreadyTaken, PhoneNumberIsAlreadyTaken {
+    @Override
+    public Client registerNewClient(final RegistrationClientDto clientDto)
+            throws EmailIsAlreadyTaken, PhoneNumberIsAlreadyTaken {
         isPasswordEqual(clientDto);
         isNotDuplicatedData(clientDto);
         Client client = convertDtoClientToClientEntity(clientDto);
         return clientRepository.save(client);
     }
 
-    private void isPasswordEqual(RegistrationClientDto clientDto) {
-        if (!clientDto.getPassword().equals(clientDto.getPassword_repeat())) {
-            throw new PasswordNotEquals("Password not equals: " + clientDto.getPassword() + " and " +
-                    clientDto.getPassword_repeat());
+    private void isPasswordEqual(final RegistrationClientDto clientDto) {
+        String password = clientDto.getPassword();
+        String passwordRepeat = clientDto.getPassword_repeat();
+
+        if (!password.equals(passwordRepeat)) {
+            throw new PasswordNotEquals("Password not equals: " + password
+                    + " and " + passwordRepeat);
         }
     }
 
-    private void isNotDuplicatedData(RegistrationClientDto clientDto) {
-        if (isEmailExists(clientDto.getEmail()) && isPhoneNumberExists(clientDto.getPhone_number())) {
+    private void isNotDuplicatedData(final RegistrationClientDto clientDto) {
+        String phoneNumber = clientDto.getPhone_number();
+        String email = clientDto.getEmail();
+
+        if (isEmailExists(email) && isPhoneNumberExists(phoneNumber)) {
             throw new EmailAndPhoneNumberIsAlreadyTaken("Phone number and email is already taken:" +
-                    clientDto.getPhone_number() + ", " + clientDto.getEmail());
+                    phoneNumber + ", " + email);
         }
-        if (isEmailExists(clientDto.getEmail())) {
+        if (isEmailExists(email)) {
             throw new EmailIsAlreadyTaken(
-                    "There is an account with that email address:" + clientDto.getEmail());
+                    "There is an account with that email address:" + email);
         }
-        if (isPhoneNumberExists(clientDto.getPhone_number())) {
+        if (isPhoneNumberExists(phoneNumber)) {
             throw new PhoneNumberIsAlreadyTaken(
-                    "There is an account with that phone number:" + clientDto.getPhone_number());
+                    "There is an account with that phone number:" + phoneNumber);
         }
     }
 
-    private Client convertDtoClientToClientEntity(RegistrationClientDto dto) {
+    private Client convertDtoClientToClientEntity(final RegistrationClientDto dto) {
         return Client.clientBuilder()
                 .name(dto.getName())
                 .surname(dto.getSurname())
@@ -63,12 +80,12 @@ public class ClientService {
                 .build();
     }
 
-    private boolean isEmailExists(String email) {
+    private boolean isEmailExists(final String email) {
         Client client = clientRepository.findByEmail(email);
         return client != null;
     }
 
-    private boolean isPhoneNumberExists(String phoneNumber) {
+    private boolean isPhoneNumberExists(final String phoneNumber) {
         Client client = clientRepository.findByPhoneNumber(phoneNumber);
         return client != null;
     }
