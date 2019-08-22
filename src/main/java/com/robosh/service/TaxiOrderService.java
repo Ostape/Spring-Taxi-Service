@@ -1,11 +1,14 @@
 package com.robosh.service;
 
-import com.robosh.dto.OrderTaxiDto;
 import com.robosh.customExceptions.NoSuchDriverOrderException;
+import com.robosh.dto.OrderTaxiDto;
 import com.robosh.model.entities.*;
 import com.robosh.model.enums.DriverStatus;
 import com.robosh.model.enums.OrderStatus;
 import com.robosh.repository.OrderRepository;
+import com.robosh.service.abstractService.AbstractAddressService;
+import com.robosh.service.abstractService.AbstractCouponService;
+import com.robosh.service.abstractService.AbstractDriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,12 +17,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class TaxiOrderService {
 
     private final OrderRepository orderRepository;
-    private final DriverService driverService;
-    private final AddressService addressService;
-    private final CouponService couponService;
+    private final AbstractDriverService driverService;
+    private final AbstractAddressService addressService;
+    private final AbstractCouponService couponService;
 
     @Autowired
-    public TaxiOrderService(OrderRepository orderRepository, DriverService driverService, AddressService addressService, CouponService couponService) {
+    public TaxiOrderService(OrderRepository orderRepository, AbstractDriverService driverService,
+                            AbstractAddressService addressService, AbstractCouponService couponService) {
         this.orderRepository = orderRepository;
         this.driverService = driverService;
         this.addressService = addressService;
@@ -27,7 +31,7 @@ public class TaxiOrderService {
     }
 
     @Transactional
-    public Order makeOrder(OrderTaxiDto orderDto, Client client) {
+    public Order makeOrder(final OrderTaxiDto orderDto, final Client client) {
         Driver driver = driverService.getDriverIfFree(orderDto.getCarType());
         driver.setDriverStatus(DriverStatus.booked);
 

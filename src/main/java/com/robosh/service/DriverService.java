@@ -4,6 +4,7 @@ import com.robosh.customExceptions.NoDriverAvailableException;
 import com.robosh.model.entities.Driver;
 import com.robosh.model.enums.DriverStatus;
 import com.robosh.repository.DriverRepository;
+import com.robosh.service.abstractService.AbstractDriverService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
