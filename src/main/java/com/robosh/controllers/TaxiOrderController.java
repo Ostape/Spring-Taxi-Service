@@ -43,6 +43,12 @@ public class TaxiOrderController {
     }
 
 
+    @GetMapping("/successful")
+    public String showSuccessfulOrderPage(){
+        return "order_status";
+    }
+
+
     @PostMapping("/makeOrder")
     public String madeOrder(@ModelAttribute("order") @NotNull @Valid OrderTaxiDto dto,
                             BindingResult result, Model model, Principal principal) {
@@ -59,7 +65,7 @@ public class TaxiOrderController {
             return "taxi_order";
         }
 
-        return "order_status";
+        return "redirect:/taxi-kyiv/client-account/successful";
     }
 
     private void setAttributes(Model model, OrderTaxiDto dto){
